@@ -1,0 +1,196 @@
+/* ── Color Palette ── */
+:root {
+  --md-primary-fg-color: #3f51b5;
+  --md-primary-fg-color--light: #757de8;
+  --md-primary-fg-color--dark: #002984;
+  --md-accent-fg-color: #ff7043;
+  --md-accent-fg-color--light: #ffa270;
+  --md-accent-fg-color--dark: #c63f17;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #5c6bc0;
+  --md-primary-fg-color--light: #8e99d3;
+  --md-primary-fg-color--dark: #26418f;
+  --md-accent-fg-color: #ff8a65;
+  --md-accent-fg-color--light: #ffbb93;
+  --md-accent-fg-color--dark: #c75b39;
+  --md-hue: 220;
+}
+
+/* ── Hero Section ── */
+.hero {
+  text-align: center;
+  padding: 3em 1.5em;
+  margin-bottom: 1.5em;
+  background: linear-gradient(135deg, #e8eaf6 0%, #fce4ec 50%, #fff3e0 100%);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-md-color-scheme="slate"] .hero {
+  background: linear-gradient(135deg, rgba(92, 107, 192, 0.15) 0%, rgba(255, 138, 101, 0.10) 50%, rgba(255, 243, 224, 0.05) 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 112, 67, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(63, 81, 181, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-name {
+  font-size: 2.8em;
+  font-weight: 700;
+  margin-bottom: 0.2em;
+  background: linear-gradient(135deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 1.15em;
+  opacity: 0.85;
+  line-height: 1.7;
+  position: relative;
+}
+
+/* ── Homepage separator ── */
+.md-typeset hr {
+  border-bottom: 2px solid var(--md-accent-fg-color);
+  width: 60px;
+  margin: 0 auto 1.5em auto;
+}
+
+/* ── Button overrides (homepage) ── */
+.md-button--primary {
+  background: linear-gradient(135deg, var(--md-primary-fg-color), var(--md-accent-fg-color)) !important;
+  border: none !important;
+  color: #fff !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.md-button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(63, 81, 181, 0.3);
+}
+
+.md-button:not(.md-button--primary) {
+  transition: transform 0.15s ease !important;
+}
+
+.md-button:not(.md-button--primary):hover {
+  transform: translateY(-1px);
+}
+
+/* ── Publication list ── */
+.publication-year-label {
+  display: inline-block;
+  margin: 1.5em 0 0.8em 0;
+  padding: 0.15em 0.8em;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+  border-radius: 4px;
+}
+
+.pub-section-label {
+  display: inline-block;
+  margin: 1.5em 0 0.8em 0;
+  padding: 0.15em 0.8em;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: #fff;
+  background: var(--md-primary-fg-color);
+  border-radius: 4px;
+}
+
+.publication-item {
+  margin-bottom: 1.2em;
+  padding: 1em 1.2em;
+  border-left: 3px solid var(--md-accent-fg-color);
+  background: rgba(128, 128, 128, 0.03);
+  border-radius: 0 8px 8px 0;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.publication-item:hover {
+  background: rgba(128, 128, 128, 0.06);
+  transform: translateX(3px);
+}
+
+.publication-authors {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.publication-title {
+  font-weight: 600;
+  font-size: 1.02em;
+  margin: 0.15em 0;
+}
+
+.publication-journal {
+  font-style: italic;
+  font-size: 0.9em;
+  color: var(--md-accent-fg-color);
+}
+
+/* ── Section heading ── */
+.section-heading {
+  font-weight: 700;
+  font-size: 1.3em;
+  margin-top: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--md-accent-fg-color);
+  color: var(--md-primary-fg-color);
+}
+
+/* ── Fade-in animation for page load ── */
+.md-main .md-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── About page: education/research entries ── */
+.exp-entry {
+  margin-bottom: 1.5em;
+  padding: 1em 1.2em;
+  border-radius: 8px;
+  background: rgba(128, 128, 128, 0.03);
+  border: 1px solid rgba(128, 128, 128, 0.08);
+  transition: background 0.2s ease;
+}
+
+.exp-entry:hover {
+  background: rgba(128, 128, 128, 0.06);
+}
+
+.exp-entry strong:first-of-type {
+  color: var(--md-primary-fg-color);
+}
