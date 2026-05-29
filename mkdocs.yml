@@ -1,0 +1,90 @@
+site_name: Mengke Zhang
+site_description: Academic homepage of Mengke Zhang — urban studies, political economy, spatial governance
+site_url: https://zjuzmk.github.io/
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+extra_css:
+  - assets/stylesheets/extra.css
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+
+extra_javascript:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+
+extra:
+  alternate:
+    - name: English
+      link: /
+      lang: en
+    - name: 中文
+      link: /zh/
+      lang: zh
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          name: English
+          default: true
+          build: true
+          nav_translations:
+            Home: Home
+            Publications: Publications
+            Research: Research
+            Blog: Blog
+            Map: Map
+            About: About
+        - locale: zh
+          name: 中文
+          build: true
+          nav_translations:
+            Home: 首页
+            Publications: 发表
+            Research: 研究
+            Blog: Blog
+            Map: 地图
+            About: 关于
+
+nav:
+  - Home: index.md
+  - Publications: publications.md
+  - Research: projects/index.md
+  - Blog: blog/index.md
+  - Map: map.md
+  - About: about.md
