@@ -67,24 +67,21 @@ plugins:
             Home: Home
             Publications: Publications
             Research: Research
-            Blog: Blog
-            Map: Map
+            Posts: Posts
             About: About
         - locale: zh
           name: 中文
           build: true
           nav_translations:
             Home: 首页
+            About: 关于
             Publications: 发表
             Research: 研究
-            Blog: Blog
-            Map: 地图
-            About: 关于
+            Posts: 动态
 
 nav:
   - Home: index.md
+  - About: about.md
   - Publications: publications.md
   - Research: projects/index.md
-  - Blog: blog/index.md
-  - Map: map.md
-  - About: about.md
+  - Posts: blog/index.md
