@@ -1,5 +1,6 @@
 ---
 title: "Platform-Mediated Live Music and Urban Cultural Spaces"
+weight: 3
 ---
 
 **2018–2020** · Peking University Shenzhen Graduate School

@@ -1,5 +1,6 @@
 ---
 title: "Property Rights and Spatial Evolution of the Chinese Danwei"
+weight: 4
 ---
 
 **2018–2020** · Peking University Shenzhen Graduate School

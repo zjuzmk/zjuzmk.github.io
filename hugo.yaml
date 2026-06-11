@@ -36,28 +36,33 @@ menu:
       name: About
       pageRef: /about
       weight: 2
-    - identifier: publications
-      name: Publications
-      pageRef: /publications
-      weight: 3
     - identifier: research
       name: Research
       pageRef: /research
+      weight: 3
+    - identifier: publications
+      name: Publications
+      pageRef: /publications
       weight: 4
     - identifier: blog
       name: Posts
       pageRef: /blog
       weight: 5
-    - name: Language
-      params:
-        type: language-switch
-        label: true
-        icon: translate
-      weight: 6
     - name: Search
       params:
         type: search
+      weight: 6
+    - name: Language
+      params:
+        type: language-switch
+        label: false
+        icon: translate
       weight: 7
+    - name: Theme
+      params:
+        type: theme-toggle
+        label: false
+      weight: 8
 
 markup:
   goldmark:

@@ -1,5 +1,6 @@
 ---
 title: "Conservation of the Grand Canal in Urban China"
+weight: 5
 ---
 
 **2015–2016** · MA Thesis · The University of Hong Kong

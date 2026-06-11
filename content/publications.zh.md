@@ -4,9 +4,9 @@ title: 发表记录
 
 ## 同行评审期刊论文
 
-- **Zhang, M.** (2024). The state-led approach to industrial heritage in China's mega-events: Capital accumulation, urban regeneration, and heritage preservation. *Built Heritage*, 8(30). [DOI](https://doi.org/10.1186/s43238-024-00144-1)
-
 - Theurillat, T. & **Zhang, M.** (2025). Financialized green state entrepreneurialism and the urbanization of mountains: Chongli's consumption-based territorial business model for the 2022 Beijing Winter Olympics. *International Journal of Urban and Regional Research*, online first. [DOI](https://doi.org/10.1111/1468-2427.70036)
+
+- **Zhang, M.** (2024). The state-led approach to industrial heritage in China's mega-events: Capital accumulation, urban regeneration, and heritage preservation. *Built Heritage*, 8(30). [DOI](https://doi.org/10.1186/s43238-024-00144-1)
 
 - **Zhang, M.** & Xiao, Z. (2023). Platform-mediated live musical performance in China: New social practices and urban cultural spaces. *Geoforum*, 140, 103723. [DOI](https://doi.org/10.1016/j.geoforum.2023.103723)
 
@@ -21,8 +21,3 @@ title: 发表记录
 - Roux, H. & **Zhang, M.** (2026). "Mega-events and the creative use of cultural heritage: The Beijing 2022 Winter Olympic Games." In P. Larsen & F. Graezer Bideau (Eds.), *The Heritage, Creativity and Innovation Nexus*. Routledge.
 
 - Xiao, Z., Liu, T., Chai, Y., & **Zhang, M.** (2020). Rethinking the spatial prototype and operational organization of the Chinese danwei system. In S. Jacoby & J. Cheng (Eds.), *The Socio-spatial Design of Community and Governance* (pp. 79–86). Springer.
-
-## 在撰论文
-
-- **Zhang, M.** 解构空间租金的关联性生产：中国山地边缘地带延伸城市化的政治经济学分析
-- **Zhang, M.** 边缘地带的基础设施化：国家实验、乡村能动性与奥运动能的非均衡整合

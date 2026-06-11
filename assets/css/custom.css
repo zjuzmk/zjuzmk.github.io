@@ -1,0 +1,349 @@
+/* ── Inter font for English ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Primary: warm indigo */
+  --primary-hue: 235;
+  --primary-saturation: 55%;
+
+  --hextra-max-page-width: 1440px;
+  --hextra-max-content-width: 800px;
+  --hextra-navbar-height: 56px;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-weight: 700; }
+h2 { font-weight: 600; }
+h3 { font-weight: 600; }
+
+/* ── Navbar polish ── */
+.hextra-nav-container-blur {
+  backdrop-filter: blur(8px);
+}
+
+/* ── Content area ── */
+.content {
+  line-height: 1.75;
+}
+
+.content a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* ── Hero (hextra-home layout) ── */
+.hero-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 72px 24px 48px;
+  text-align: center;
+}
+
+.hero-name {
+  font-size: 3em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg,
+    hsl(var(--primary-hue), var(--primary-saturation), 45%),
+    hsl(var(--primary-hue), var(--primary-saturation), 30%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+:root[class~="dark"] .hero-name {
+  background: linear-gradient(135deg,
+    hsl(var(--primary-hue), 60%, 70%),
+    hsl(var(--primary-hue), 40%, 55%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 4px 16px;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), var(--primary-saturation), 45%);
+  background: hsl(var(--primary-hue), var(--primary-saturation), 95%);
+  border-radius: 999px;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+:root[class~="dark"] .hero-badge {
+  color: hsl(var(--primary-hue), 70%, 75%);
+  background: hsl(var(--primary-hue), 50%, 15%);
+}
+
+.hero-subtitle {
+  font-size: 1.15em;
+  color: hsl(var(--primary-hue), 15%, 40%);
+  margin-top: -8px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+:root[class~="dark"] .hero-subtitle {
+  color: hsl(var(--primary-hue), 30%, 70%);
+}
+
+.hero-description {
+  font-size: 1.02em;
+  line-height: 1.75;
+  color: hsl(0, 0%, 30%);
+  max-width: 640px;
+  margin: 0 auto 32px;
+}
+
+:root[class~="dark"] .hero-description {
+  color: hsl(0, 0%, 75%);
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-btn-primary {
+  display: inline-block;
+  padding: 9px 22px;
+  font-size: 0.92em;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg,
+    hsl(var(--primary-hue), var(--primary-saturation), 50%),
+    hsl(var(--primary-hue), var(--primary-saturation), 40%));
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px hsla(var(--primary-hue), var(--primary-saturation), 50%, 0.3);
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 9px 22px;
+  font-size: 0.92em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 15%, 20%);
+  background: hsl(var(--primary-hue), 5%, 96%);
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid hsl(var(--primary-hue), 5%, 88%);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-1px);
+  background: hsl(var(--primary-hue), 5%, 92%);
+}
+
+:root[class~="dark"] .hero-btn {
+  color: hsl(0, 0%, 85%);
+  background: hsl(var(--primary-hue), 10%, 14%);
+  border-color: hsl(var(--primary-hue), 10%, 22%);
+}
+
+:root[class~="dark"] .hero-btn:hover {
+  background: hsl(var(--primary-hue), 10%, 20%);
+}
+
+.hero-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88em;
+}
+
+.hero-links a {
+  color: hsl(var(--primary-hue), 10%, 45%);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.hero-links a:hover {
+  color: hsl(var(--primary-hue), var(--primary-saturation), 45%);
+}
+
+:root[class~="dark"] .hero-links a {
+  color: hsl(var(--primary-hue), 15%, 60%);
+}
+
+:root[class~="dark"] .hero-links a:hover {
+  color: hsl(var(--primary-hue), 40%, 75%);
+}
+
+.hero-link-sep {
+  color: hsl(var(--primary-hue), 5%, 75%);
+  pointer-events: none;
+}
+
+:root[class~="dark"] .hero-link-sep {
+  color: hsl(var(--primary-hue), 10%, 35%);
+}
+
+/* ── Research cards ── */
+.research-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.research-card {
+  padding: 20px 24px;
+  border-radius: 10px;
+  background: hsl(var(--primary-hue), 10%, 98%);
+  border: 1px solid hsl(var(--primary-hue), 10%, 90%);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.research-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-color: hsl(var(--primary-hue), var(--primary-saturation), 70%);
+}
+
+:root[class~="dark"] .research-card {
+  background: hsl(var(--primary-hue), 10%, 10%);
+  border-color: hsl(var(--primary-hue), 10%, 18%);
+}
+
+:root[class~="dark"] .research-card:hover {
+  border-color: hsl(var(--primary-hue), 40%, 35%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.research-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.08em;
+}
+
+.research-card h3 a {
+  color: hsl(var(--primary-hue), var(--primary-saturation), 40%);
+  text-decoration: none;
+}
+
+:root[class~="dark"] .research-card h3 a {
+  color: hsl(var(--primary-hue), 50%, 72%);
+}
+
+.research-card h3 a:hover {
+  color: hsl(var(--primary-hue), var(--primary-saturation), 30%);
+}
+
+.research-card p {
+  margin: 8px 0 0 0;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.research-card strong {
+  font-size: 0.88em;
+  color: hsl(0, 0%, 40%);
+  font-weight: 500;
+}
+
+:root[class~="dark"] .research-card strong {
+  color: hsl(0, 0%, 60%);
+}
+
+/* ── Page title spacing ── */
+article h1 {
+  margin-bottom: 0.3em;
+}
+
+/* ── Links in content ── */
+.content a:not(.hero-btn):not(.hero-btn-primary) {
+  color: hsl(var(--primary-hue), var(--primary-saturation), 45%);
+  transition: color 0.15s ease;
+}
+
+.content a:not(.hero-btn):not(.hero-btn-primary):hover {
+  color: hsl(var(--primary-hue), var(--primary-saturation), 30%);
+}
+
+/* ── Horizontal rules ── */
+.content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(var(--primary-hue), var(--primary-saturation), 70%, 0.3) 40%,
+    hsl(var(--primary-hue), var(--primary-saturation), 70%, 0.3) 60%,
+    transparent 100%);
+  margin: 32px 0;
+}
+
+/* ── Table styling ── */
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94em;
+}
+
+.content th {
+  text-align: left;
+  padding: 10px 14px;
+  background: hsl(var(--primary-hue), 10%, 96%);
+  font-weight: 600;
+  border-bottom: 2px solid hsl(var(--primary-hue), 10%, 84%);
+}
+
+:root[class~="dark"] .content th {
+  background: hsl(var(--primary-hue), 10%, 14%);
+  border-bottom-color: hsl(var(--primary-hue), 10%, 28%);
+}
+
+.content td {
+  padding: 8px 14px;
+  border-bottom: 1px solid hsl(var(--primary-hue), 10%, 90%);
+}
+
+:root[class~="dark"] .content td {
+  border-bottom-color: hsl(var(--primary-hue), 10%, 20%);
+}
+
+/* ── Code font ── */
+code, pre, kbd {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+}
+
+/* ── Blog list cards ── */
+.blog-list .hx\:mb-10 {
+  padding: 20px 24px;
+  border-radius: 10px;
+  background: hsl(var(--primary-hue), 10%, 98%);
+  border: 1px solid hsl(var(--primary-hue), 10%, 90%);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+:root[class~="dark"] .blog-list .hx\:mb-10 {
+  background: hsl(var(--primary-hue), 10%, 10%);
+  border-color: hsl(var(--primary-hue), 10%, 18%);
+}

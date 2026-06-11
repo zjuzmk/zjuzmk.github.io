@@ -9,6 +9,8 @@ date: 2026-05-29
 
 I've been meaning to set up a personal academic homepage for a while. Like many researchers, I wanted something clean, bilingual, and easy to maintain—but I kept putting it off. The options all felt like compromises: WordPress required too much upkeep, Notion locked you into its ecosystem, and hand-coding from scratch felt like a weekend I didn't have.
 
+<!--more-->
+
 Then I tried [Claude Code](https://claude.ai/code)—the tool you're interacting with right now.
 
 ## The Setup

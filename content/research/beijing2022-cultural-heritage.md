@@ -1,5 +1,6 @@
 ---
 title: "Cultural Heritage at the Beijing 2022 Winter Olympics"
+weight: 2
 ---
 
 **2022–2024** · SNSF Research Project · EPFL

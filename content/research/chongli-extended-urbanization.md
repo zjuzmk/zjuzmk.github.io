@@ -1,5 +1,6 @@
 ---
 title: "Reconfiguring the Mountains: Chongli's Extended Urbanization"
+weight: 1
 ---
 
 **2020–2025** · PhD Dissertation · EPFL
