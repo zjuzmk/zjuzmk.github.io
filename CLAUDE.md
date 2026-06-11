@@ -16,15 +16,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - If a change spans 3+ files, outline the plan before writing code.
 
 ## Project
-- **Tech stack:** Material for MkDocs (static site generator), Python 3.14
+- **Tech stack:** Hugo static site generator + Hextra theme
 - **Purpose:** Academic personal homepage for Mengke Zhang
-- **Content source:** Markdown files in `docs/en/` (English) and `docs/zh/` (Chinese)
-- **Config file:** `mkdocs.yml`
-- **Custom styles:** `docs/assets/stylesheets/extra.css`
-- **Design decisions:** Documented in `SITE-PLAN.md`
+- **Content source:** Markdown files in `content/` (English as default, Chinese via `.zh.md` suffix)
+- **Config file:** `hugo.yaml`
+- **Theme:** Hextra (git-cloned into `themes/hextra/`)
+- **i18n:** `i18n/en.yaml` and `i18n/zh.yaml`
 - **Authoritative English source:** `MyProfile&Publications/CV-English.md` — check terminology against this
-- **Build:** `mkdocs build` (outputs to `site/`)
-- **Dev server:** `mkdocs serve` (hot-reload at http://127.0.0.1:8000)
-- **Deploy:** GitHub Pages (`https://zjuzmk.github.io/`) via `mkdocs gh-deploy`
-- **Site structure:** Home, Publications, Research (5 project pages + index), Blog (manual markdown), Map (Leaflet.js), About
-- **Map:** Leaflet.js + OpenStreetMap CDN, loaded via extra_css/extra_javascript in mkdocs.yml
+- **Build:** `hugo` (outputs to `public/`)
+- **Dev server:** `hugo server` (hot-reload at http://localhost:1313)
+- **Deploy:** GitHub Pages (`https://zjuzmk.github.io/`) via GitHub Actions (`.github/workflows/pages.yaml`)
+- **Hugo binary:** `~/bin/hugo`
+- **Bilingual pattern:** Translation by filename — `page.md` (EN) and `page.zh.md` (ZH)
+- **Site structure:** Home, About, Publications, Research (section with 5 project pages), Blog (manual markdown)

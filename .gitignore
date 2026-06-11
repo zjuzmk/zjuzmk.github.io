@@ -5,3 +5,7 @@ site/
 HANDOFF.md
 MyProfile&Publications/
 SITE-PLAN.md
+themes/hextra/
+/public/
+/resources/
+.hugo_build.lock

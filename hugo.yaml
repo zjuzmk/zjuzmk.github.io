@@ -1,0 +1,65 @@
+baseURL: https://zjuzmk.github.io/
+title: Mengke Zhang
+theme: hextra
+
+enableGitInfo: true
+
+defaultContentLanguage: en
+
+languages:
+  en:
+    label: English
+    weight: 1
+  zh:
+    label: 中文
+    weight: 2
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: false
+  footer:
+    enable: true
+    displayCopyright: true
+    displayPoweredBy: true
+  theme:
+    default: system
+    displayToggle: true
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      pageRef: /
+      weight: 1
+    - identifier: about
+      name: About
+      pageRef: /about
+      weight: 2
+    - identifier: publications
+      name: Publications
+      pageRef: /publications
+      weight: 3
+    - identifier: research
+      name: Research
+      pageRef: /research
+      weight: 4
+    - identifier: blog
+      name: Posts
+      pageRef: /blog
+      weight: 5
+    - name: Language
+      params:
+        type: language-switch
+        label: true
+        icon: translate
+      weight: 6
+    - name: Search
+      params:
+        type: search
+      weight: 7
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
