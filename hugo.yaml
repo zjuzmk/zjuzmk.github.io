@@ -32,22 +32,32 @@ menu:
       name: Home
       pageRef: /
       weight: 1
+      params:
+        icon: home
     - identifier: about
       name: About
       pageRef: /about
       weight: 2
+      params:
+        icon: user
     - identifier: research
       name: Research
       pageRef: /research
       weight: 3
+      params:
+        icon: academic-cap
     - identifier: publications
       name: Publications
       pageRef: /publications
       weight: 4
+      params:
+        icon: document-text
     - identifier: blog
       name: Posts
       pageRef: /blog
       weight: 5
+      params:
+        icon: newspaper
     - name: Search
       params:
         type: search
