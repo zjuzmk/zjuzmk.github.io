@@ -8,10 +8,10 @@ defaultContentLanguage: en
 
 languages:
   en:
-    label: English
+    languageName: English
     weight: 1
   zh:
-    label: 中文
+    languageName: 中文
     weight: 2
 
 params:
