@@ -1,17 +1,24 @@
-/* ── Inter font (Bunny CDN — global accessibility) ── */
-@import url('https://fonts.bunny.net/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+/* ── System fonts (no external dependency) ── */
 
 :root {
-  --font-sans: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
-  --hx-font-sans: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
   /* Primary: teal-green */
   --primary-hue: 175;
   --primary-saturation: 45%;
 
+  /* Accent: warm sand */
+  --accent-hue: 32;
+  --accent-saturation: 35%;
+
   --hextra-max-page-width: 1440px;
   --hextra-max-content-width: 800px;
-  --hextra-navbar-height: 56px;
+  --hextra-navbar-height: 54px;
+}
+
+/* ── Global font override ── */
+html {
+  font-family: var(--font-sans);
 }
 
 body {
@@ -19,17 +26,55 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -20%,
+      hsla(var(--primary-hue), 40%, 88%, 0.25) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 100%,
+      hsla(var(--primary-hue), 30%, 85%, 0.18) 0%,
+      transparent 60%);
+  background-attachment: fixed;
+}
+
+:root[class~="dark"] body {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -20%,
+      hsla(var(--primary-hue), 30%, 20%, 0.2) 0%,
+      transparent 60%);
+  background-attachment: fixed;
+}
+
+/* ── UI elements: sans-serif ── */
+nav, button, input, textarea, select,
+ul, ol, li, table, th, td,
+h1, h2, h3, h4, h5, h6,
+.hero-name, .hero-subtitle,
+.research-card h3 {
+  font-family: var(--font-sans);
 }
 
 /* ── Typography ── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans);
   letter-spacing: -0.02em;
 }
 
-h1 { font-weight: 700; }
+h1 { font-weight: 650; }
 h2 { font-weight: 600; }
-h3 { font-weight: 600; }
+h3 { font-weight: 550; }
+
+/* ── Content text: Georgia serif for readability ── */
+.content p,
+article p,
+.content blockquote,
+article blockquote {
+  font-family: cambria, georgia, "Times New Roman", serif;
+}
+
+/* ── Navbar title: normal weight ── */
+.hextra-nav-container a span.hx\:font-extrabold {
+  font-weight: 600;
+  font-family: cambria, georgia, "Times New Roman", serif;
+}
 
 /* ── Navbar ── */
 .hextra-nav-container-blur {
@@ -54,36 +99,69 @@ h3 { font-weight: 600; }
 }
 
 /* ══════════════════════════════════════════
-   HERO — Homepage (hextra-home layout)
+   HERO — Fullscreen (hextra-home layout)
    ══════════════════════════════════════════ */
 
-.hero-container {
+.hero-fullscreen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/images/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  margin: calc(-1 * var(--hextra-navbar-height)) calc(-50vw + 50%) 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.50) 0%,
+    rgba(255,255,255,0.68) 50%,
+    rgba(255,255,255,0.78) 100%);
+  z-index: 1;
+}
+
+:root[class~="dark"] .hero-overlay {
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.65) 50%,
+    rgba(0,0,0,0.78) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 720px;
-  margin: 0 auto;
-  padding: 80px 24px 56px;
+  padding: 80px 30px 56px;
   text-align: center;
+  color: hsl(var(--primary-hue), 20%, 18%);
+  transition: color 0.3s ease;
+}
+
+:root[class~="dark"] .hero-content {
+  color: #fff;
 }
 
 .hero-name {
-  font-size: 3.2em;
-  font-weight: 700;
+  font-size: 2.8em;
+  font-weight: 650;
   letter-spacing: -0.03em;
-  margin-bottom: 12px;
-  background: linear-gradient(135deg,
-    hsl(var(--primary-hue), 55%, 38%),
-    hsl(var(--primary-hue), 35%, 28%));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.15;
+  margin-bottom: 18px;
+  color: hsl(var(--primary-hue), 25%, 15%);
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  font-family: cambria, georgia, "Times New Roman", serif;
 }
 
 :root[class~="dark"] .hero-name {
-  background: linear-gradient(135deg,
-    hsl(var(--primary-hue), 55%, 62%),
-    hsl(var(--primary-hue), 40%, 48%));
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 
 .hero-badge {
@@ -91,48 +169,53 @@ h3 { font-weight: 600; }
   padding: 5px 18px;
   font-size: 0.84em;
   font-weight: 500;
-  color: hsl(var(--primary-hue), var(--primary-saturation), 38%);
-  background: hsl(var(--primary-hue), 60%, 93%);
-  border: 1px solid hsl(var(--primary-hue), 45%, 84%);
+  color: hsl(var(--primary-hue), 35%, 32%);
+  background: hsla(var(--primary-hue), 20%, 72%, 0.40);
+  border: 1px solid hsla(var(--primary-hue), 25%, 55%, 0.30);
   border-radius: 999px;
   margin-bottom: 20px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(8px);
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 :root[class~="dark"] .hero-badge {
-  color: hsl(var(--primary-hue), 55%, 70%);
-  background: hsl(var(--primary-hue), 40%, 12%);
-  border-color: hsl(var(--primary-hue), 30%, 22%);
+  color: hsla(var(--primary-hue), 60%, 85%, 0.95);
+  background: hsla(var(--primary-hue), 30%, 30%, 0.4);
+  border-color: hsla(var(--primary-hue), 40%, 60%, 0.3);
 }
 
 .hero-subtitle {
-  font-size: 1.1em;
-  color: hsl(var(--primary-hue), 12%, 38%);
+  font-size: 0.9em;
+  color: hsl(var(--primary-hue), 20%, 30%);
   margin-top: -6px;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
   font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
 }
 
 :root[class~="dark"] .hero-subtitle {
-  color: hsl(var(--primary-hue), 20%, 68%);
+  color: hsla(var(--primary-hue), 25%, 78%, 0.95);
 }
 
 .hero-description {
   font-size: 1.02em;
   line-height: 1.8;
-  color: hsl(var(--primary-hue), 5%, 28%);
+  color: hsl(var(--primary-hue), 10%, 22%);
   max-width: 620px;
   margin: 0 auto 36px;
+  transition: color 0.3s ease;
 }
 
 :root[class~="dark"] .hero-description {
-  color: hsl(var(--primary-hue), 10%, 72%);
+  color: hsla(0, 0%, 92%, 0.9);
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 32px;
   flex-wrap: wrap;
 }
@@ -141,22 +224,23 @@ h3 { font-weight: 600; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 24px;
+  padding: 11px 28px;
   font-size: 0.93em;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg,
-    hsl(var(--primary-hue), 55%, 42%),
-    hsl(var(--primary-hue), 40%, 34%));
-  border-radius: 10px;
+  background: hsla(var(--primary-hue), var(--primary-saturation), 45%, 0.85);
+  border: 1px solid hsla(var(--primary-hue), var(--primary-saturation), 55%, 0.5);
+  border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 2px 8px hsla(var(--primary-hue), 50%, 40%, 0.25);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 .hero-btn-primary:hover {
+  background: hsla(var(--primary-hue), var(--primary-saturation), 50%, 0.95);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px hsla(var(--primary-hue), 50%, 40%, 0.35);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
   color: #fff;
   text-decoration: none;
 }
@@ -165,69 +249,184 @@ h3 { font-weight: 600; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 24px;
+  padding: 11px 28px;
   font-size: 0.93em;
   font-weight: 500;
-  color: hsl(var(--primary-hue), 12%, 25%);
-  background: hsl(var(--primary-hue), 15%, 97%);
-  border-radius: 10px;
+  color: hsl(var(--primary-hue), 20%, 22%);
+  background: hsla(var(--primary-hue), 15%, 65%, 0.18);
+  border: 1px solid hsla(var(--primary-hue), 20%, 50%, 0.25);
+  border-radius: 999px;
   text-decoration: none;
-  border: 1px solid hsl(var(--primary-hue), 10%, 86%);
-  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
 }
 
 .hero-btn:hover {
+  background: hsla(var(--primary-hue), 15%, 65%, 0.30);
+  border-color: hsla(var(--primary-hue), 25%, 45%, 0.40);
   transform: translateY(-2px);
-  background: hsl(var(--primary-hue), 20%, 93%);
-  border-color: hsl(var(--primary-hue), 25%, 78%);
+  color: hsl(var(--primary-hue), 20%, 15%);
   text-decoration: none;
 }
 
 :root[class~="dark"] .hero-btn {
-  color: hsl(var(--primary-hue), 15%, 82%);
-  background: hsl(var(--primary-hue), 15%, 11%);
-  border-color: hsl(var(--primary-hue), 12%, 22%);
+  color: rgba(255,255,255,0.9);
+  background: hsla(0, 0%, 100%, 0.08);
+  border-color: hsla(0, 0%, 100%, 0.2);
 }
 
 :root[class~="dark"] .hero-btn:hover {
-  background: hsl(var(--primary-hue), 15%, 16%);
-  border-color: hsl(var(--primary-hue), 25%, 32%);
+  background: hsla(0, 0%, 100%, 0.15);
+  border-color: hsla(0, 0%, 100%, 0.35);
+  color: #fff;
 }
 
 .hero-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-size: 0.88em;
 }
 
 .hero-links a {
-  color: hsl(var(--primary-hue), 8%, 48%);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: hsl(var(--primary-hue), 18%, 35%);
   text-decoration: none;
   transition: color 0.15s ease;
   padding: 2px 4px;
 }
 
 .hero-links a:hover {
-  color: hsl(var(--primary-hue), var(--primary-saturation), 38%);
+  color: hsl(var(--primary-hue), 30%, 20%);
 }
 
 :root[class~="dark"] .hero-links a {
-  color: hsl(var(--primary-hue), 10%, 58%);
+  color: hsla(0, 0%, 88%, 0.75);
 }
 
 :root[class~="dark"] .hero-links a:hover {
-  color: hsl(var(--primary-hue), 35%, 72%);
+  color: #fff;
 }
 
 .hero-link-sep {
-  color: hsl(var(--primary-hue), 5%, 72%);
+  color: hsl(var(--primary-hue), 15%, 55%);
   pointer-events: none;
 }
 
 :root[class~="dark"] .hero-link-sep {
-  color: hsl(var(--primary-hue), 10%, 38%);
+  color: hsla(0, 0%, 88%, 0.4);
+}
+
+/* ══════════════════════════════════════════
+   ABOUT PAGE — Profile + Research
+   ══════════════════════════════════════════ */
+
+.about-profile {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin: 20px 0 40px;
+  padding: 32px;
+  background: hsl(var(--primary-hue), 12%, 97%);
+  border-radius: 16px;
+  border: 1px solid hsl(var(--primary-hue), 15%, 90%);
+}
+
+:root[class~="dark"] .about-profile {
+  background: hsl(var(--primary-hue), 10%, 11%);
+  border-color: hsl(var(--primary-hue), 10%, 20%);
+}
+
+.about-photo {
+  flex-shrink: 0;
+  width: 180px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px hsl(var(--primary-hue), var(--primary-saturation), 70%), 0 4px 20px rgba(0,0,0,0.1);
+  background: hsl(var(--primary-hue), 12%, 97%);
+  align-self: center;
+}
+
+:root[class~="dark"] .about-photo {
+  background: hsl(var(--primary-hue), 10%, 11%);
+}
+
+.about-photo .profile-img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  transform: scale(1.16);
+  background: linear-gradient(135deg,
+    hsl(var(--primary-hue), 30%, 75%) 0%,
+    hsl(var(--primary-hue), 25%, 60%) 100%);
+}
+
+.about-intro {
+  flex: 1;
+  min-width: 0;
+}
+
+.about-intro p {
+  margin: 0 0 12px 0;
+  font-size: 1.02em;
+  line-height: 1.75;
+}
+
+.about-intro p:last-of-type {
+  margin-bottom: 16px;
+}
+
+.about-contact-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.about-contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.88em;
+  color: hsl(var(--primary-hue), var(--primary-saturation), 38%);
+  text-decoration: none;
+  padding: 4px 2px;
+  transition: color 0.15s ease;
+}
+
+.about-contact-links a:hover {
+  color: hsl(var(--primary-hue), var(--primary-saturation), 28%);
+}
+
+:root[class~="dark"] .about-contact-links a {
+  color: hsl(var(--primary-hue), 45%, 68%);
+}
+
+:root[class~="dark"] .about-contact-links a:hover {
+  color: hsl(var(--primary-hue), 50%, 78%);
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 640px) {
+  .about-profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .about-contact-links {
+    justify-content: center;
+  }
+  .hero-name {
+    font-size: 2.4em;
+  }
+  .hero-fullscreen {
+    min-height: 500px;
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -242,23 +441,23 @@ h3 { font-weight: 600; }
 }
 
 .research-card {
-  padding: 22px 28px;
+  padding: 24px 28px;
   border-radius: 12px;
-  background: hsl(var(--primary-hue), 15%, 98%);
+  background: hsl(var(--primary-hue), 12%, 98%);
   border: 1px solid hsl(var(--primary-hue), 10%, 90%);
-  border-left: 4px solid hsl(var(--primary-hue), var(--primary-saturation), 52%);
+  border-left: 3px solid hsl(var(--primary-hue), var(--primary-saturation), 52%);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
   position: relative;
 }
 
 .research-card:hover {
-  transform: translateY(-3px) translateX(2px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
   border-left-color: hsl(var(--primary-hue), 60%, 40%);
 }
 
 :root[class~="dark"] .research-card {
-  background: hsl(var(--primary-hue), 15%, 9%);
+  background: hsl(var(--primary-hue), 10%, 10%);
   border-color: hsl(var(--primary-hue), 10%, 18%);
   border-left-color: hsl(var(--primary-hue), 45%, 44%);
 }
@@ -294,17 +493,22 @@ h3 { font-weight: 600; }
   margin: 8px 0 0 0;
   font-size: 0.95em;
   line-height: 1.65;
+  color: hsl(var(--primary-hue), 5%, 32%);
+}
+
+:root[class~="dark"] .research-card p {
+  color: hsl(var(--primary-hue), 8%, 72%);
 }
 
 .research-card strong {
   font-size: 0.87em;
-  color: hsl(var(--primary-hue), 5%, 38%);
+  color: hsl(var(--accent-hue), var(--accent-saturation), 42%);
   font-weight: 500;
   letter-spacing: 0.01em;
 }
 
 :root[class~="dark"] .research-card strong {
-  color: hsl(var(--primary-hue), 10%, 58%);
+  color: hsl(var(--accent-hue), var(--accent-saturation), 58%);
 }
 
 /* ══════════════════════════════════════════
@@ -312,25 +516,29 @@ h3 { font-weight: 600; }
    ══════════════════════════════════════════ */
 
 .map-section {
-  margin: 40px 0 24px;
+  margin: 32px 0 24px;
+  padding: 20px;
+  background: hsl(var(--primary-hue), 10%, 98%);
+  border-radius: 14px;
+  border: 1px solid hsl(var(--primary-hue), 10%, 88%);
+}
+
+:root[class~="dark"] .map-section {
+  background: hsl(var(--primary-hue), 10%, 10%);
+  border-color: hsl(var(--primary-hue), 10%, 20%);
 }
 
 .map-section h2 {
   border-bottom: none;
   margin-bottom: 16px;
+  margin-top: 0;
 }
 
 #research-map {
   height: 400px;
-  border-radius: 14px;
-  border: 1px solid hsl(var(--primary-hue), 10%, 86%);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-}
-
-:root[class~="dark"] #research-map {
-  border-color: hsl(var(--primary-hue), 10%, 20%);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* ══════════════════════════════════════════
@@ -339,6 +547,24 @@ h3 { font-weight: 600; }
 
 article h1 {
   margin-bottom: 0.3em;
+}
+
+/* ── Section labels ── */
+.content h2 {
+  position: relative;
+  font-size: 1.15em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: hsl(var(--primary-hue), 8%, 35%);
+  border-bottom: 1px solid hsl(var(--primary-hue), 20%, 85%);
+  padding-bottom: 0.5em;
+  margin-top: 2.5em;
+}
+
+:root[class~="dark"] .content h2 {
+  color: hsl(var(--primary-hue), 15%, 70%);
+  border-bottom-color: hsl(var(--primary-hue), 15%, 25%);
 }
 
 /* ── Links ── */
@@ -355,42 +581,46 @@ article h1 {
 /* ── Horizontal rules ── */
 .content hr {
   border: none;
-  height: 2px;
+  height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
     hsl(var(--primary-hue), var(--primary-saturation), 65%, 0.25) 40%,
     hsl(var(--primary-hue), var(--primary-saturation), 65%, 0.25) 60%,
     transparent 100%);
-  margin: 36px 0;
+  margin: 40px 0;
 }
 
 /* ── Tables ── */
 .content table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.94em;
+  font-size: 0.85em;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  margin-top: 12px;
 }
 
 .content th {
   text-align: left;
   padding: 10px 16px;
-  background: hsl(var(--primary-hue), 20%, 95%);
+  background: hsl(var(--primary-hue), 18%, 94%);
   font-weight: 600;
-  color: hsl(var(--primary-hue), 15%, 22%);
+  color: hsl(var(--primary-hue), 12%, 25%);
   border-bottom: 2px solid hsl(var(--primary-hue), 25%, 82%);
+  font-size: 0.82em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 :root[class~="dark"] .content th {
-  background: hsl(var(--primary-hue), 20%, 12%);
-  color: hsl(var(--primary-hue), 20%, 78%);
+  background: hsl(var(--primary-hue), 15%, 14%);
+  color: hsl(var(--primary-hue), 15%, 75%);
   border-bottom-color: hsl(var(--primary-hue), 20%, 28%);
 }
 
 .content td {
-  padding: 9px 16px;
+  padding: 10px 16px;
   border-bottom: 1px solid hsl(var(--primary-hue), 10%, 90%);
 }
 
@@ -408,51 +638,438 @@ code, pre, kbd {
 }
 
 /* ══════════════════════════════════════════
-   BLOG LIST CARDS
+   POSTS LIST — Playful card layout
    ══════════════════════════════════════════ */
 
-.blog-list main > div[class*="mb-10"],
-main#content > div.hx\\:mb-10 {
-  padding: 22px 28px;
-  border-radius: 12px;
-  background: hsl(var(--primary-hue), 15%, 98%);
-  border: 1px solid hsl(var(--primary-hue), 10%, 90%);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.posts-hero {
+  text-align: center;
+  margin: 32px 0 48px;
+  padding: 40px 32px;
+  background: linear-gradient(135deg,
+    hsla(var(--primary-hue), 35%, 88%, 0.4) 0%,
+    hsla(var(--accent-hue), 30%, 90%, 0.3) 50%,
+    hsla(280, 30%, 88%, 0.25) 100%);
+  border-radius: 20px;
+  border: 1px solid hsla(var(--primary-hue), 20%, 75%, 0.25);
+  position: relative;
+  overflow: hidden;
 }
 
-.blog-list main > div[class*="mb-10"]:hover,
-main#content > div.hx\\:mb-10:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+.posts-hero::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle,
+    hsla(32, 80%, 65%, 0.15) 0%,
+    transparent 70%);
+  pointer-events: none;
 }
 
-:root[class~="dark"] .blog-list main > div[class*="mb-10"],
-:root[class~="dark"] main#content > div.hx\\:mb-10 {
-  background: hsl(var(--primary-hue), 15%, 9%);
-  border-color: hsl(var(--primary-hue), 10%, 18%);
+.posts-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle,
+    hsla(175, 60%, 55%, 0.12) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+.posts-hero h1 {
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px 0;
+  color: hsl(var(--primary-hue), 25%, 20%);
+  position: relative;
+  z-index: 1;
+}
+
+:root[class~="dark"] .posts-hero h1 {
+  color: hsla(0, 0%, 95%, 0.95);
+}
+
+.posts-subtitle {
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: hsl(var(--primary-hue), 12%, 35%);
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+:root[class~="dark"] .posts-subtitle {
+  color: hsla(0, 0%, 88%, 0.75);
+}
+
+/* Grid */
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin: 32px 0;
+}
+
+@media (min-width: 768px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Post card */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: hsl(var(--primary-hue), 10%, 98%);
+  border: 1px solid hsl(var(--primary-hue), 12%, 88%);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+:root[class~="dark"] .post-card {
+  background: hsl(var(--primary-hue), 10%, 10%);
+  border-color: hsl(var(--primary-hue), 10%, 20%);
+}
+
+:root[class~="dark"] .post-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Left accent bar */
+.post-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg,
+    hsl(32, 85%, 62%) 0%,
+    hsl(175, 50%, 52%) 50%,
+    hsl(280, 55%, 65%) 100%);
+  opacity: 0.7;
+  transition: opacity 0.2s ease, width 0.2s ease;
+}
+
+.post-card:hover::before {
+  opacity: 1;
+  width: 5px;
+}
+
+/* Card image */
+.post-card-image {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.post-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.post-card:hover .post-card-image img {
+  transform: scale(1.04);
+}
+
+.post-card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 50%,
+    hsla(var(--primary-hue), 15%, 10%, 0.08) 100%);
+  pointer-events: none;
+}
+
+/* Card content */
+.post-card-content {
+  padding: 22px 24px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Meta */
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.post-card-date {
+  font-size: 0.8em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 12%, 50%);
+  letter-spacing: 0.02em;
+}
+
+:root[class~="dark"] .post-card-date {
+  color: hsl(var(--primary-hue), 15%, 60%);
+}
+
+.post-card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.post-card-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.72em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: hsla(var(--primary-hue), 30%, 75%, 0.2);
+  color: hsl(var(--primary-hue), 30%, 40%);
+  border: 1px solid hsla(var(--primary-hue), 25%, 60%, 0.2);
+}
+
+:root[class~="dark"] .post-card-tag {
+  background: hsla(var(--primary-hue), 30%, 40%, 0.25);
+  color: hsl(var(--primary-hue), 40%, 72%);
+  border-color: hsla(var(--primary-hue), 30%, 50%, 0.25);
+}
+
+/* Title */
+.post-card-title {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.post-card-title a {
+  color: hsl(var(--primary-hue), 20%, 18%);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.post-card-title a:hover {
+  color: hsl(var(--primary-hue), 50%, 35%);
+}
+
+:root[class~="dark"] .post-card-title a {
+  color: hsla(0, 0%, 95%, 0.95);
+}
+
+:root[class~="dark"] .post-card-title a:hover {
+  color: hsl(var(--primary-hue), 55%, 70%);
+}
+
+/* Summary */
+.post-card-summary {
+  font-size: 0.92em;
+  line-height: 1.65;
+  color: hsl(var(--primary-hue), 8%, 38%);
+  margin: 0 0 16px 0;
+  flex: 1;
+  font-family: cambria, georgia, "Times New Roman", serif;
+}
+
+:root[class~="dark"] .post-card-summary {
+  color: hsl(var(--primary-hue), 10%, 72%);
+}
+
+/* Read more */
+.post-card-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.88em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 45%, 42%);
+  text-decoration: none;
+  transition: color 0.15s ease, gap 0.15s ease;
+  margin-top: auto;
+}
+
+.post-card-readmore:hover {
+  color: hsl(var(--primary-hue), 55%, 32%);
+  gap: 8px;
+}
+
+:root[class~="dark"] .post-card-readmore {
+  color: hsl(var(--primary-hue), 50%, 68%);
+}
+
+:root[class~="dark"] .post-card-readmore:hover {
+  color: hsl(var(--primary-hue), 55%, 78%);
 }
 
 /* ══════════════════════════════════════════
-   SUBTLE PAGE BACKGROUND TEXTURE
+   POST SINGLE — Article header
    ══════════════════════════════════════════ */
 
-body {
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -20%,
-      hsla(var(--primary-hue), 40%, 88%, 0.25) 0%,
-      transparent 60%),
-    radial-gradient(ellipse 60% 50% at 85% 100%,
-      hsla(var(--primary-hue), 30%, 85%, 0.18) 0%,
-      transparent 60%);
-  background-attachment: fixed;
+.post-header {
+  margin: 8px 0 40px;
 }
 
-:root[class~="dark"] body {
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -20%,
-      hsla(var(--primary-hue), 30%, 20%, 0.2) 0%,
-      transparent 60%);
-  background-attachment: fixed;
+.post-header-title {
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px 0;
+  color: hsl(var(--primary-hue), 20%, 18%);
+  line-height: 1.2;
+}
+
+:root[class~="dark"] .post-header-title {
+  color: hsla(0, 0%, 95%, 0.95);
+}
+
+.post-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.post-header-date {
+  font-size: 0.85em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 12%, 48%);
+  letter-spacing: 0.02em;
+}
+
+:root[class~="dark"] .post-header-date {
+  color: hsl(var(--primary-hue), 15%, 62%);
+}
+
+.post-header-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.post-header-tag {
+  display: inline-block;
+  padding: 3px 12px;
+  font-size: 0.75em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: hsla(32, 70%, 65%, 0.2);
+  color: hsl(32, 55%, 42%);
+  border: 1px solid hsla(32, 50%, 55%, 0.2);
+}
+
+:root[class~="dark"] .post-header-tag {
+  background: hsla(32, 50%, 55%, 0.25);
+  color: hsl(32, 60%, 72%);
+  border-color: hsla(32, 50%, 55%, 0.25);
+}
+
+.post-header-image {
+  margin: 0 -24px;
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 380px;
+}
+
+.post-header-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .post-header-image {
+    margin: 0;
+    border-radius: 16px;
+  }
+}
+
+.post-article-content {
+  margin-top: 32px;
+}
+
+/* ══════════════════════════════════════════
+   COLORFUL DECORATIONS
+   ══════════════════════════════════════════ */
+
+/* Floating shapes on posts page */
+.posts-hero .shape {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.posts-hero .shape-1 {
+  top: 15px;
+  right: 30px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: hsl(32, 85%, 65%);
+  animation: float 3s ease-in-out infinite;
+}
+
+.posts-hero .shape-2 {
+  bottom: 20px;
+  left: 40px;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: hsl(175, 60%, 55%);
+  transform: rotate(45deg);
+  animation: float 2.5s ease-in-out infinite 0.5s;
+}
+
+.posts-hero .shape-3 {
+  top: 30px;
+  left: 60px;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: hsl(280, 60%, 68%);
+  animation: float 2s ease-in-out infinite 1s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Make blog pager look nicer on posts page */
+.posts-grid + .hx\:mt-10,
+.posts-grid + nav {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid hsla(var(--primary-hue), 15%, 75%, 0.25);
+}
+
+:root[class~="dark"] .posts-grid + .hx\:mt-10,
+:root[class~="dark"] .posts-grid + nav {
+  border-top-color: hsla(var(--primary-hue), 15%, 25%, 0.25);
 }
 
 /* ══════════════════════════════════════════
@@ -465,24 +1082,24 @@ body {
 }
 
 .content h2 + ul li {
-  padding: 12px 18px;
-  margin-bottom: 8px;
-  border-radius: 8px;
-  background: hsl(var(--primary-hue), 15%, 97%);
+  padding: 14px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: hsl(var(--primary-hue), 10%, 97%);
   border-left: 3px solid transparent;
   transition: background 0.15s ease, border-left-color 0.15s ease;
 }
 
 .content h2 + ul li:hover {
-  background: hsl(var(--primary-hue), 20%, 93%);
+  background: hsl(var(--primary-hue), 15%, 93%);
   border-left-color: hsl(var(--primary-hue), var(--primary-saturation), 48%);
 }
 
 :root[class~="dark"] .content h2 + ul li {
-  background: hsl(var(--primary-hue), 15%, 10%);
+  background: hsl(var(--primary-hue), 10%, 11%);
 }
 
 :root[class~="dark"] .content h2 + ul li:hover {
-  background: hsl(var(--primary-hue), 15%, 14%);
+  background: hsl(var(--primary-hue), 10%, 15%);
   border-left-color: hsl(var(--primary-hue), 40%, 48%);
 }
