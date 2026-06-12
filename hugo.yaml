@@ -47,7 +47,6 @@ menu:
     - name: Language
       params:
         type: language-switch
-        label: false
         icon: translate
       weight: 5
 
