@@ -46,7 +46,3 @@ I study the political economy of regional development, periphery urbanization, a
     Email
   </a>
 </div>
-
-</div>
-
-</div>
