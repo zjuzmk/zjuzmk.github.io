@@ -2,9 +2,8 @@ node_modules/
 .env
 .claude/
 site/
-HANDOFF.md
 MyProfile&Publications/
-SITE-PLAN.md
+SITE-LOG.md
 CLAUDE.md
 WEBSITE-GUIDE.md
 themes/hextra/

@@ -1,5 +1,7 @@
 ---
 title: 关于我
+sidebar:
+  hide: true
 ---
 
 <div class="about-profile">
@@ -41,7 +43,7 @@ title: 关于我
 
 <div class="research-card">
 
-### [崇礼的延伸城市化](/research/chongli-extended-urbanization)
+### [崇礼的延伸城市化](/about/projects/chongli-extended-urbanization)
 
 **2020–2025** · 博士论文 · 瑞士洛桑联邦理工学院（EPFL）
 
@@ -51,7 +53,7 @@ title: 关于我
 
 <div class="research-card">
 
-### [北京2022冬奥会文化遗产](/research/beijing2022-cultural-heritage)
+### [北京2022冬奥会文化遗产](/about/projects/beijing2022-cultural-heritage)
 
 **2022–2024** · SNSF研究项目
 
@@ -61,7 +63,7 @@ title: 关于我
 
 <div class="research-card">
 
-### [平台中介的现场音乐与城市空间](/research/live-music-urban-spaces)
+### [平台中介的现场音乐与城市空间](/about/projects/live-music-urban-spaces)
 
 **2018–2020** · 北京大学深圳研究生院
 
@@ -71,7 +73,7 @@ title: 关于我
 
 <div class="research-card">
 
-### [单位制社区的产权与空间演变](/research/danwei-spatial-transformation)
+### [单位制社区的产权与空间演变](/about/projects/danwei-spatial-transformation)
 
 **2018–2020** · 北京大学深圳研究生院
 
@@ -81,7 +83,7 @@ title: 关于我
 
 <div class="research-card">
 
-### [大运河遗产保护](/research/grand-canal-heritage)
+### [大运河遗产保护](/about/projects/grand-canal-heritage)
 
 **2015–2016** · 硕士论文 · 香港大学
 
@@ -101,12 +103,39 @@ title: 关于我
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var map = L.map('research-map').setView([34.5, 114], 5);
+  var isDark = document.documentElement.classList.contains('dark');
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 18
-  }).addTo(map);
+  var map = L.map('research-map', {
+    zoomControl: false,
+    scrollWheelZoom: false
+  }).setView([34, 116], 5);
+
+  L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+  var lightTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  });
+
+  var darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  });
+
+  (isDark ? darkTiles : lightTiles).addTo(map);
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        var nowDark = document.documentElement.classList.contains('dark');
+        map.removeLayer(nowDark ? lightTiles : darkTiles);
+        map.addLayer(nowDark ? darkTiles : lightTiles);
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
 
   var sites = [
     {
@@ -132,9 +161,18 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   sites.forEach(function(s) {
-    var marker = L.marker([s.lat, s.lng]).addTo(map);
+    var marker = L.marker([s.lat, s.lng], {
+      icon: L.divIcon({
+        className: 'research-marker',
+        html: '<div class="research-marker-dot"></div><div class="research-marker-pulse"></div>',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      })
+    }).addTo(map);
+
     marker.bindPopup(
-      '<strong>' + s.title + '</strong><br><p style="margin:4px 0 0;max-width:240px;">' + s.desc + '</p>'
+      '<div class="research-popup"><strong>' + s.title + '</strong><p>' + s.desc + '</p></div>',
+      { className: 'research-popup-wrapper', closeButton: false }
     );
   });
 });

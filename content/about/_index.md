@@ -1,5 +1,7 @@
 ---
 title: About
+sidebar:
+  hide: true
 ---
 
 <div class="about-profile">
@@ -41,7 +43,7 @@ I recently completed my PhD at the Heritage, Anthropology and Technologies Resea
 
 <div class="research-card">
 
-### [Chongli's Extended Urbanization](/research/chongli-extended-urbanization)
+### [Chongli's Extended Urbanization](/about/projects/chongli-extended-urbanization)
 
 **2020–2025** · PhD Dissertation, EPFL
 
@@ -51,7 +53,7 @@ How did the 2022 Beijing Winter Olympics transform a poor mountain county into C
 
 <div class="research-card">
 
-### [Cultural Heritage at Beijing 2022](/research/beijing2022-cultural-heritage)
+### [Cultural Heritage at Beijing 2022](/about/projects/beijing2022-cultural-heritage)
 
 **2022–2024** · SNSF Research Project
 
@@ -61,7 +63,7 @@ Part of an international, interdisciplinary team examining how the Beijing 2022 
 
 <div class="research-card">
 
-### [Platform-Mediated Live Music and Urban Spaces](/research/live-music-urban-spaces)
+### [Platform-Mediated Live Music and Urban Spaces](/about/projects/live-music-urban-spaces)
 
 **2018–2020** · Peking University Shenzhen
 
@@ -71,7 +73,7 @@ How do digital platforms reshape live music performance and create new urban cul
 
 <div class="research-card">
 
-### [Property Rights and the Danwei Compound](/research/danwei-spatial-transformation)
+### [Property Rights and the Danwei Compound](/about/projects/danwei-spatial-transformation)
 
 **2018–2020** · Peking University Shenzhen
 
@@ -81,7 +83,7 @@ Tracing how property rights redistribution has driven the spatial and institutio
 
 <div class="research-card">
 
-### [Conservation of the Grand Canal](/research/grand-canal-heritage)
+### [Conservation of the Grand Canal](/about/projects/grand-canal-heritage)
 
 **2015–2016** · MA Thesis, HKU
 
@@ -101,12 +103,39 @@ Examining the mismatch between official heritage discourse and local realities i
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var map = L.map('research-map').setView([34.5, 114], 5);
+  var isDark = document.documentElement.classList.contains('dark');
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 18
-  }).addTo(map);
+  var map = L.map('research-map', {
+    zoomControl: false,
+    scrollWheelZoom: false
+  }).setView([34, 116], 5);
+
+  L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+  var lightTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  });
+
+  var darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  });
+
+  (isDark ? darkTiles : lightTiles).addTo(map);
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        var nowDark = document.documentElement.classList.contains('dark');
+        map.removeLayer(nowDark ? lightTiles : darkTiles);
+        map.addLayer(nowDark ? darkTiles : lightTiles);
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
 
   var sites = [
     {
@@ -132,9 +161,18 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   sites.forEach(function(s) {
-    var marker = L.marker([s.lat, s.lng]).addTo(map);
+    var marker = L.marker([s.lat, s.lng], {
+      icon: L.divIcon({
+        className: 'research-marker',
+        html: '<div class="research-marker-dot"></div><div class="research-marker-pulse"></div>',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      })
+    }).addTo(map);
+
     marker.bindPopup(
-      '<strong>' + s.title + '</strong><br><p style="margin:4px 0 0;max-width:240px;">' + s.desc + '</p>'
+      '<div class="research-popup"><strong>' + s.title + '</strong><p>' + s.desc + '</p></div>',
+      { className: 'research-popup-wrapper', closeButton: false }
     );
   });
 });

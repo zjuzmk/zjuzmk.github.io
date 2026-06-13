@@ -20,11 +20,11 @@ layout: hextra-home
 </div>
 
 <div class="hero-buttons">
-  <a href="/publications" class="hero-btn-primary">
+  <a href="{{< lang-url "/publications" >}}" class="hero-btn-primary">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M15.5 2A1.5 1.5 0 0014 3.5v13a1.5 1.5 0 001.5 1.5h1a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0016.5 2h-1zM9.5 6A1.5 1.5 0 008 7.5v9A1.5 1.5 0 009.5 18h1a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0010.5 6h-1zM3.5 10A1.5 1.5 0 002 11.5v5A1.5 1.5 0 003.5 18h1A1.5 1.5 0 006 16.5v-5A1.5 1.5 0 004.5 10h-1z" clip-rule="evenodd"/></svg>
     发表记录
   </a>
-  <a href="/about" class="hero-btn">
+  <a href="{{< lang-url "/about" >}}" class="hero-btn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 17.5a6.483 6.483 0 004.793-3.11A5.99 5.99 0 0010 12z" clip-rule="evenodd"/></svg>
     关于我
   </a>
