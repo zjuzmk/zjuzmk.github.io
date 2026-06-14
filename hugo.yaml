@@ -20,7 +20,7 @@ params:
     displayLogo: false
   footer:
     enable: true
-    displayCopyright: true
+    displayCopyright: false
     displayPoweredBy: true
   theme:
     default: system
