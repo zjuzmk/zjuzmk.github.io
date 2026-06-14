@@ -98,6 +98,12 @@ article blockquote {
   border-bottom: 2px solid hsl(var(--primary-hue), var(--primary-saturation), 80%, 0.35);
 }
 
+/* ── footer ── */
+footer .hx\:py-12 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 2rem !important;
+}
+
 /* ══════════════════════════════════════════
    HERO — Fullscreen (hextra-home layout)
    ══════════════════════════════════════════ */
@@ -106,6 +112,7 @@ article blockquote {
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   min-height: 600px;
   display: flex;
   align-items: center;
@@ -113,14 +120,20 @@ article blockquote {
   background: url('/images/hero-bg.png');
   background-size: cover;
   background-position: center;
-  margin: calc(-1 * var(--hextra-navbar-height)) calc(-50vw + 50%) 0;
+  background-repeat: no-repeat;
+  margin: calc(-1 * var(--hextra-navbar-height)) calc(-50vw + 50%) -2rem;
+  overflow: hidden;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.20) 0%,
+    rgba(255,255,255,0.25) 0%,
     rgba(255,255,255,0.38) 50%,
     rgba(255,255,255,0.48) 100%);
   z-index: 1;

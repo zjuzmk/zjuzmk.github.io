@@ -15,13 +15,15 @@ languages:
     weight: 2
 
 params:
+  description: Mengke Zhang's personal website.
   navbar:
     displayTitle: true
     displayLogo: false
   footer:
     enable: true
-    displayCopyright: false
-    displayPoweredBy: true
+    displayCopyright: true
+    displayPoweredBy: false
+    width: narrow
   theme:
     default: system
     displayToggle: true
