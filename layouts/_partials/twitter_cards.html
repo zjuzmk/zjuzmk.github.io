@@ -1,0 +1,29 @@
+<meta name="twitter:card" content="{{- with .Params.images -}}summary_large_image{{- else -}}summary{{- end -}}">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{- with .Description -}}
+  {{- . -}}
+{{- else -}}
+  {{- if .IsHome -}}
+    {{- with .Site.Params.description }}{{ . }}{{ end -}}
+  {{- else if .IsPage -}}
+    {{- .Summary | plainify | truncate 200 -}}
+  {{- else -}}
+    {{- with .Site.Params.description }}{{ . }}{{ end -}}
+  {{- end -}}
+{{- end -}}">
+
+{{- with $.Params.images -}}
+  {{- $image := index . 0 -}}
+  {{- if hasPrefix $image "/" -}}
+    {{- $image = $image | relURL -}}
+  {{- end -}}
+  <meta name="twitter:image" content="{{ $image | absURL }}">
+{{- else -}}
+  {{- with $.Site.Params.images }}
+    {{- $image := index . 0 -}}
+    {{- if hasPrefix $image "/" -}}
+      {{- $image = $image | relURL -}}
+    {{- end -}}
+    <meta name="twitter:image" content="{{ $image | absURL }}">
+  {{- end }}
+{{- end -}}

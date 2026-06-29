@@ -1,0 +1,42 @@
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{- with .Description -}}
+  {{- . -}}
+{{- else -}}
+  {{- if .IsHome -}}
+    {{- with .Site.Params.description }}{{ . }}{{ end -}}
+  {{- else if .IsPage -}}
+    {{- .Summary | plainify | truncate 200 -}}
+  {{- else -}}
+    {{- with .Site.Params.description }}{{ . }}{{ end -}}
+  {{- end -}}
+{{- end -}}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+
+{{- with $.Params.images -}}
+  {{- range first 6 . }}
+    {{- $image := . -}}
+    {{- if hasPrefix $image "/" -}}
+      {{- $image = $image | relURL -}}
+    {{- end -}}
+    <meta property="og:image" content="{{ $image | absURL }}">
+  {{- end }}
+{{- else -}}
+  {{- with $.Site.Params.images }}
+    {{- $image := index . 0 -}}
+    {{- if hasPrefix $image "/" -}}
+      {{- $image = $image | relURL -}}
+    {{- end -}}
+    <meta property="og:image" content="{{ $image | absURL }}">
+  {{- end }}
+{{- end -}}
+
+{{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
+{{- if .IsPage }}
+<meta property="article:section" content="{{ .Section }}">
+{{- with .PublishDate }}<meta property="article:published_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>{{ end }}
+{{- with .Lastmod }}<meta property="article:modified_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>{{ end }}
+{{- end }}
+
+{{- with .Params.locale }}<meta property="og:locale" content="{{ . }}">{{ end }}
+{{- with .Site.Params.title }}<meta property="og:site_name" content="{{ . }}">{{ end }}

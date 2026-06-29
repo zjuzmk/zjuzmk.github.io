@@ -16,6 +16,8 @@ languages:
 
 params:
   description: Mengke Zhang's personal website.
+  images:
+    - /images/profile.jpg
   navbar:
     displayTitle: true
     displayLogo: false
