@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="100%" stop-color="#e8e0d5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#paper)"/>
+  <!-- Book spine -->
+  <rect x="280" y="60" width="240" height="340" rx="4" fill="#2a4a50" opacity="0.12"/>
+  <rect x="290" y="70" width="220" height="320" rx="2" fill="#f8f5f0"/>
+  <!-- Page lines -->
+  <line x1="310" y1="110" x2="490" y2="110" stroke="#4a6a70" stroke-width="0.8" opacity="0.3"/>
+  <line x1="310" y1="130" x2="490" y2="130" stroke="#4a6a70" stroke-width="0.8" opacity="0.3"/>
+  <line x1="310" y1="150" x2="490" y2="150" stroke="#4a6a70" stroke-width="0.8" opacity="0.3"/>
+  <line x1="310" y1="170" x2="490" y2="170" stroke="#4a6a70" stroke-width="0.8" opacity="0.3"/>
+  <line x1="310" y1="190" x2="490" y2="190" stroke="#4a6a70" stroke-width="0.8" opacity="0.3"/>
+  <line x1="310" y1="210" x2="460" y2="210" stroke="#4a6a70" stroke-width="0.8" opacity="0.3"/>
+  <!-- Margin notes (handwritten style) -->
+  <line x1="310" y1="250" x2="350" y2="250" stroke="#c87850" stroke-width="2" opacity="0.6"/>
+  <line x1="310" y1="265" x2="370" y2="265" stroke="#c87850" stroke-width="2" opacity="0.6"/>
+  <line x1="310" y1="280" x2="340" y2="280" stroke="#c87850" stroke-width="2" opacity="0.6"/>
+  <!-- Underline emphasis -->
+  <rect x="380" y="146" width="80" height="3" fill="#2a8a85" opacity="0.4"/>
+  <!-- Annotation circles -->
+  <circle cx="400" cy="190" r="18" fill="none" stroke="#c87850" stroke-width="1.5" opacity="0.5"/>
+  <!-- Title -->
+  <text x="310" y="100" font-family="Georgia, serif" font-size="16" fill="#1a3a40" font-weight="600">La production de l'espace</text>
+  <!-- Stamp -->
+  <rect x="420" y="320" width="70" height="40" rx="2" fill="none" stroke="#2a8a85" stroke-width="1.5" opacity="0.5" transform="rotate(-8 455 340)"/>
+  <text x="400" y="345" font-family="monospace" font-size="10" fill="#2a8a85" opacity="0.6" transform="rotate(-8 430 340)">FIELD NOTES</text>
+  <!-- Overlay title -->
+  <rect x="0" y="370" width="800" height="80" fill="#1a2a30" opacity="0.12"/>
+  <text x="40" y="410" font-family="Georgia, serif" font-size="24" fill="#1a3a40" font-weight="600">Reading Lefebvre in Chongli</text>
+</svg>

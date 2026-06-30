@@ -7,44 +7,49 @@
         {{ partial "custom/page-begin.html" . }}
         {{ partial "breadcrumb.html" (dict "page" . "enable" false) }}
 
-        <!-- Posts hero section -->
+        <!-- Posts hero -->
         <div class="posts-hero">
-          {{ if .Title }}<h1>{{ .Title }}</h1>{{ end }}
-          {{ if .Content }}<p class="posts-subtitle">{{ .Content }}</p>{{ end }}
+          {{ if .Title }}<h1 class="posts-hero-title">{{ .Title }}</h1>{{ end }}
+          {{ if .Content }}<div class="posts-hero-subtitle">{{ .Content }}</div>{{ end }}
         </div>
 
         <!-- Post cards -->
         {{- $pages := partial "utils/sort-pages" (dict "page" . "by" "date" "order" "desc") -}}
-        {{- $pagerSize := site.Params.blog.list.pagerSize | default 10 -}}
+        {{- $pagerSize := site.Params.blog.list.pagerSize | default 20 -}}
         {{- $paginator := .Paginate $pages $pagerSize -}}
 
         <div class="posts-grid">
           {{- range $paginator.Pages }}
             <article class="post-card">
               {{- if .Params.image }}
-                <a href="{{ .RelPermalink }}" class="post-card-image">
-                  <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy" />
+                <a href="{{ .RelPermalink }}" class="post-card-image" aria-hidden="true" tabindex="-1">
+                  <img src="{{ .Params.image }}" alt="" loading="lazy" />
                   <div class="post-card-image-overlay"></div>
                 </a>
               {{- end }}
               <div class="post-card-content">
                 <div class="post-card-meta">
                   <span class="post-card-date">{{ partial "utils/format-date" .Date }}</span>
-                  {{- if .Params.tags }}
-                    <div class="post-card-tags">
-                      {{- range first 3 .Params.tags }}
-                        <span class="post-card-tag">{{ . }}</span>
-                      {{- end }}
-                    </div>
+                  {{- with .Params.location }}
+                  <span class="post-card-location">📍 {{ . }}</span>
                   {{- end }}
                 </div>
                 <h2 class="post-card-title">
                   <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                 </h2>
                 <p class="post-card-summary">{{ .Params.summary | default (.Summary | plainify | htmlUnescape | chomp) }}</p>
-                <a href="{{ .RelPermalink }}" class="post-card-readmore" aria-label="{{ printf "%s %s" $readMore .Title }}">
-                  {{ $readMore }}
-                </a>
+                <div class="post-card-footer">
+                  {{- if .Params.tags }}
+                  <div class="post-card-tags">
+                    {{- range first 3 .Params.tags }}
+                    <span class="post-card-tag">#{{ . }}</span>
+                    {{- end }}
+                  </div>
+                  {{- end }}
+                  <a href="{{ .RelPermalink }}" class="post-card-readmore" aria-label="{{ printf "%s %s" $readMore .Title }}">
+                    {{ $readMore }}
+                  </a>
+                </div>
               </div>
             </article>
           {{ end -}}

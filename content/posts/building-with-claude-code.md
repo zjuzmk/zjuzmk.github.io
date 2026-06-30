@@ -1,6 +1,7 @@
 ---
 title: "Building This Site with Claude Code"
 date: 2026-06-12
+tags: ["tools", "workflow", "meta"]
 image: /images/posts/post-it.svg
 summary: "A researcher building a personal website with an AI collaboration tool."
 aliases:

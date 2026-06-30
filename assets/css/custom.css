@@ -93,9 +93,20 @@ article blockquote {
 
 /* ── Section headers ── */
 .content h2 {
-  margin-top: 2.2em;
-  padding-bottom: 0.35em;
-  border-bottom: 2px solid hsl(var(--primary-hue), var(--primary-saturation), 80%, 0.35);
+  position: relative;
+  font-size: 1.15em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: hsl(var(--primary-hue), 8%, 35%);
+  border-bottom: 1px solid hsl(var(--primary-hue), 20%, 85%);
+  padding-bottom: 0.5em;
+  margin-top: 2.5em;
+}
+
+:root[class~="dark"] .content h2 {
+  color: hsl(var(--primary-hue), 15%, 70%);
+  border-bottom-color: hsl(var(--primary-hue), 15%, 25%);
 }
 
 /* ── footer ── */
@@ -341,6 +352,15 @@ html, body {
    ABOUT PAGE — Profile + Research
    ══════════════════════════════════════════ */
 
+/* ── About page title: centered to match Publications/Posts ── */
+.content:has(> .about-profile) > h1:first-child {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0 2.5rem;
+}
+
 .about-profile {
   display: flex;
   gap: 30px;
@@ -350,6 +370,7 @@ html, body {
   background: hsl(var(--primary-hue), 12%, 97%);
   border-radius: 16px;
   border: 1px solid hsl(var(--primary-hue), 15%, 90%);
+  counter-reset: about-section;
 }
 
 :root[class~="dark"] .about-profile {
@@ -448,6 +469,59 @@ html, body {
   }
 }
 
+/* ── About section headings: numbered, serif, non-uppercase ── */
+.content h2.about-section {
+  counter-increment: about-section;
+  font-family: cambria, georgia, "Times New Roman", serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: hsl(var(--primary-hue), 25%, 18%);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 3.2em;
+  margin-bottom: 0.4em;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.content h2.about-section::before {
+  content: "0" counter(about-section);
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.6em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: hsla(var(--primary-hue), var(--primary-saturation), 45%, 0.55);
+  position: relative;
+  top: -0.05em;
+}
+
+.content h2.about-section::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg,
+    hsla(var(--primary-hue), 20%, 80%, 0.5) 0%,
+    transparent 100%);
+  align-self: center;
+}
+
+:root[class~="dark"] .content h2.about-section {
+  color: hsla(0, 0%, 92%, 0.95);
+}
+
+:root[class~="dark"] .content h2.about-section::before {
+  color: hsla(var(--primary-hue), 45%, 60%, 0.6);
+}
+
+:root[class~="dark"] .content h2.about-section::after {
+  background: linear-gradient(90deg,
+    hsla(var(--primary-hue), 20%, 30%, 0.6) 0%,
+    transparent 100%);
+}
+
 /* ══════════════════════════════════════════
    RESEARCH CARDS
    ══════════════════════════════════════════ */
@@ -457,6 +531,7 @@ html, body {
   flex-direction: column;
   gap: 16px;
   margin: 24px 0;
+  counter-reset: research-card;
 }
 
 .research-card {
@@ -467,6 +542,7 @@ html, body {
   border-left: 3px solid hsl(var(--primary-hue), var(--primary-saturation), 52%);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
   position: relative;
+  counter-increment: research-card;
 }
 
 .research-card:hover {
@@ -486,14 +562,57 @@ html, body {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
 }
 
+/* ── Card index number ── */
+.research-card::before {
+  content: "0" counter(research-card);
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: hsla(var(--primary-hue), var(--primary-saturation), 50%, 0.4);
+  transition: color 0.2s ease;
+}
+
+.research-card:hover::before {
+  color: hsla(var(--primary-hue), var(--primary-saturation), 45%, 0.75);
+}
+
+:root[class~="dark"] .research-card::before {
+  color: hsla(var(--primary-hue), 40%, 55%, 0.35);
+}
+
+:root[class~="dark"] .research-card:hover::before {
+  color: hsla(var(--primary-hue), 50%, 65%, 0.7);
+}
+
 .research-card h3 {
   margin: 0 0 6px 0;
   font-size: 1.1em;
+  padding-right: 40px;
 }
 
 .research-card h3 a {
   color: hsl(var(--primary-hue), var(--primary-saturation), 38%);
   text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.research-card h3 a::after {
+  content: "→";
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.research-card:hover h3 a::after {
+  opacity: 0.7;
+  transform: translateX(0);
 }
 
 .research-card h3 a:hover {
@@ -519,15 +638,24 @@ html, body {
   color: hsl(var(--primary-hue), 8%, 72%);
 }
 
+/* ── Year badge (the <strong> wraps the year span) ── */
 .research-card strong {
-  font-size: 0.87em;
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: hsl(var(--accent-hue), var(--accent-saturation), 42%);
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  background: hsla(var(--accent-hue), var(--accent-saturation), 60%, 0.14);
+  border: 1px solid hsla(var(--accent-hue), var(--accent-saturation), 55%, 0.25);
+  border-radius: 6px;
+  padding: 2px 9px;
+  margin: 4px 0 8px;
 }
 
 :root[class~="dark"] .research-card strong {
-  color: hsl(var(--accent-hue), var(--accent-saturation), 58%);
+  color: hsl(var(--accent-hue), var(--accent-saturation), 62%);
+  background: hsla(var(--accent-hue), var(--accent-saturation), 45%, 0.18);
+  border-color: hsla(var(--accent-hue), var(--accent-saturation), 50%, 0.3);
 }
 
 /* ══════════════════════════════════════════
@@ -605,6 +733,33 @@ html, body {
   background: hsla(var(--primary-hue), 55%, 58%, 0.35);
 }
 
+/* ── Numbered badge on marker ── */
+.research-marker-num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-25%, -25%);
+  z-index: 3;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: hsl(var(--primary-hue), var(--primary-saturation), 32%);
+  color: #fff;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  border: 1.5px solid #fff;
+}
+
+:root[class~="dark"] .research-marker-num {
+  background: hsl(var(--primary-hue), 45%, 42%);
+  border-color: hsl(var(--primary-hue), 20%, 14%);
+}
+
 @keyframes marker-pulse {
   0% { transform: translate(-50%, -50%) scale(0.6); opacity: 1; }
   100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
@@ -661,30 +816,64 @@ html, body {
   max-width: 260px;
 }
 
+/* ── Fieldwork table: numbered rows as a legend for the map ── */
+.map-section + table {
+  counter-reset: site-row;
+  margin-top: 24px;
+}
+
+.map-section + table thead tr::before {
+  content: "#";
+  display: table-cell;
+  width: 2.2em;
+  padding: 10px 6px 10px 16px;
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--primary-hue), 12%, 25%);
+  background: hsl(var(--primary-hue), 18%, 94%);
+  border-bottom: 2px solid hsl(var(--primary-hue), 25%, 82%);
+}
+
+:root[class~="dark"] .map-section + table thead tr::before {
+  color: hsl(var(--primary-hue), 15%, 75%);
+  background: hsl(var(--primary-hue), 15%, 14%);
+  border-bottom-color: hsl(var(--primary-hue), 20%, 28%);
+}
+
+.map-section + table tbody tr {
+  counter-increment: site-row;
+}
+
+.map-section + table tbody tr::before {
+  content: counter(site-row);
+  display: table-cell;
+  width: 2.2em;
+  padding: 10px 6px 10px 16px;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: hsl(var(--primary-hue), var(--primary-saturation), 40%);
+  border-bottom: 1px solid hsl(var(--primary-hue), 10%, 90%);
+}
+
+:root[class~="dark"] .map-section + table tbody tr::before {
+  color: hsl(var(--primary-hue), 45%, 60%);
+  border-bottom-color: hsl(var(--primary-hue), 10%, 20%);
+}
+
+.map-section + table tbody tr:last-child td,
+.map-section + table tbody tr:last-child::before {
+  border-bottom: none;
+}
+
 /* ══════════════════════════════════════════
    GENERAL PAGE STYLING
    ══════════════════════════════════════════ */
 
 article h1 {
   margin-bottom: 0.3em;
-}
-
-/* ── Section labels ── */
-.content h2 {
-  position: relative;
-  font-size: 1.15em;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: hsl(var(--primary-hue), 8%, 35%);
-  border-bottom: 1px solid hsl(var(--primary-hue), 20%, 85%);
-  padding-bottom: 0.5em;
-  margin-top: 2.5em;
-}
-
-:root[class~="dark"] .content h2 {
-  color: hsl(var(--primary-hue), 15%, 70%);
-  border-bottom-color: hsl(var(--primary-hue), 15%, 25%);
 }
 
 /* ── Links ── */
@@ -758,145 +947,104 @@ code, pre, kbd {
 }
 
 /* ══════════════════════════════════════════
-   POSTS LIST — Playful card layout
+   POSTS — Clean, simple card layout
    ══════════════════════════════════════════ */
 
+/* ── Posts hero ── */
 .posts-hero {
-  text-align: center;
-  margin: 32px 0 48px;
-  padding: 40px 32px;
-  background: linear-gradient(135deg,
-    hsla(var(--primary-hue), 35%, 88%, 0.4) 0%,
-    hsla(var(--accent-hue), 30%, 90%, 0.3) 50%,
-    hsla(280, 30%, 88%, 0.25) 100%);
-  border-radius: 20px;
-  border: 1px solid hsla(var(--primary-hue), 20%, 75%, 0.25);
   position: relative;
+  margin: 20px 0 48px;
+  padding: 48px 40px 44px;
+  border-radius: 24px;
   overflow: hidden;
+  text-align: center;
+  background: linear-gradient(135deg,
+    hsla(var(--primary-hue), 40%, 85%, 0.3) 0%,
+    hsla(var(--accent-hue), 35%, 88%, 0.2) 50%,
+    hsla(280, 20%, 88%, 0.15) 100%);
 }
 
-.posts-hero::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  right: -20%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle,
-    hsla(32, 80%, 65%, 0.15) 0%,
-    transparent 70%);
-  pointer-events: none;
+:root[class~="dark"] .posts-hero {
+  background: linear-gradient(135deg,
+    hsla(var(--primary-hue), 30%, 20%, 0.35) 0%,
+    hsla(var(--accent-hue), 25%, 18%, 0.2) 50%,
+    hsla(280, 15%, 18%, 0.15) 100%);
 }
 
-.posts-hero::after {
-  content: "";
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle,
-    hsla(175, 60%, 55%, 0.12) 0%,
-    transparent 70%);
-  pointer-events: none;
-}
-
-.posts-hero h1 {
-  font-size: 2.2em;
+.posts-hero-title {
+  font-family: cambria, georgia, "Times New Roman", serif;
+  font-size: 2.6em;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin: 0 0 12px 0;
-  color: hsl(var(--primary-hue), 25%, 20%);
-  position: relative;
-  z-index: 1;
+  margin: 0 0 10px 0;
+  color: hsl(var(--primary-hue), 25%, 18%);
+  line-height: 1.1;
 }
 
-:root[class~="dark"] .posts-hero h1 {
+:root[class~="dark"] .posts-hero-title {
   color: hsla(0, 0%, 95%, 0.95);
 }
 
-.posts-subtitle {
-  font-size: 1.05em;
+.posts-hero-subtitle {
+  font-size: 1em;
   line-height: 1.7;
   color: hsl(var(--primary-hue), 12%, 35%);
-  max-width: 520px;
+  max-width: 480px;
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
-:root[class~="dark"] .posts-subtitle {
-  color: hsla(0, 0%, 88%, 0.75);
+:root[class~="dark"] .posts-hero-subtitle {
+  color: hsla(0, 0%, 88%, 0.7);
 }
 
-/* Grid */
+/* ── Posts grid — uniform 2 columns ── */
 .posts-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 28px;
-  margin: 32px 0;
+  gap: 24px;
+  margin: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .posts-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Post card */
+/* ── Post card ── */
 .post-card {
   display: flex;
   flex-direction: column;
-  background: hsl(var(--primary-hue), 10%, 98%);
-  border: 1px solid hsl(var(--primary-hue), 12%, 88%);
+  background: hsl(var(--primary-hue), 12%, 98%);
+  border: 1px solid hsl(var(--primary-hue), 10%, 90%);
   border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
 }
 
 .post-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  border-color: hsla(var(--primary-hue), 25%, 70%, 0.4);
 }
 
 :root[class~="dark"] .post-card {
   background: hsl(var(--primary-hue), 10%, 10%);
-  border-color: hsl(var(--primary-hue), 10%, 20%);
+  border-color: hsl(var(--primary-hue), 10%, 18%);
 }
 
 :root[class~="dark"] .post-card:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  border-color: hsla(var(--primary-hue), 20%, 30%, 0.6);
 }
 
-/* Left accent bar */
-.post-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 16px;
-  bottom: 16px;
-  width: 4px;
-  border-radius: 2px;
-  background: linear-gradient(180deg,
-    hsl(32, 85%, 62%) 0%,
-    hsl(175, 50%, 52%) 50%,
-    hsl(280, 55%, 65%) 100%);
-  opacity: 0.7;
-  transition: opacity 0.2s ease, width 0.2s ease;
-}
-
-.post-card:hover::before {
-  opacity: 1;
-  width: 5px;
-}
-
-/* Card image */
+/* ── Card image ── */
 .post-card-image {
   display: block;
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 180px;
   overflow: hidden;
   text-decoration: none;
 }
@@ -905,32 +1053,32 @@ code, pre, kbd {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 
 .post-card:hover .post-card-image img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .post-card-image-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    transparent 50%,
-    hsla(var(--primary-hue), 15%, 10%, 0.08) 100%);
+    transparent 60%,
+    hsla(var(--primary-hue), 15%, 10%, 0.06) 100%);
   pointer-events: none;
 }
 
-/* Card content */
+/* ── Card content ── */
 .post-card-content {
-  padding: 22px 24px 24px;
+  padding: 22px 24px 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-/* Meta */
+/* ── Meta ── */
 .post-card-meta {
   display: flex;
   align-items: center;
@@ -940,7 +1088,7 @@ code, pre, kbd {
 }
 
 .post-card-date {
-  font-size: 0.8em;
+  font-size: 0.78em;
   font-weight: 500;
   color: hsl(var(--primary-hue), 12%, 50%);
   letter-spacing: 0.02em;
@@ -950,35 +1098,19 @@ code, pre, kbd {
   color: hsl(var(--primary-hue), 15%, 60%);
 }
 
-.post-card-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+.post-card-location {
+  font-size: 0.78em;
+  color: hsl(var(--primary-hue), 15%, 45%);
 }
 
-.post-card-tag {
-  display: inline-block;
-  padding: 2px 10px;
-  font-size: 0.72em;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  background: hsla(var(--primary-hue), 30%, 75%, 0.2);
-  color: hsl(var(--primary-hue), 30%, 40%);
-  border: 1px solid hsla(var(--primary-hue), 25%, 60%, 0.2);
+:root[class~="dark"] .post-card-location {
+  color: hsl(var(--primary-hue), 18%, 62%);
 }
 
-:root[class~="dark"] .post-card-tag {
-  background: hsla(var(--primary-hue), 30%, 40%, 0.25);
-  color: hsl(var(--primary-hue), 40%, 72%);
-  border-color: hsla(var(--primary-hue), 30%, 50%, 0.25);
-}
-
-/* Title */
+/* ── Title ── */
 .post-card-title {
   margin: 0 0 10px 0;
-  font-size: 1.2em;
+  font-size: 1.15em;
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.02em;
@@ -991,7 +1123,7 @@ code, pre, kbd {
 }
 
 .post-card-title a:hover {
-  color: hsl(var(--primary-hue), 50%, 35%);
+  color: hsl(var(--primary-hue), 50%, 32%);
 }
 
 :root[class~="dark"] .post-card-title a {
@@ -1002,9 +1134,9 @@ code, pre, kbd {
   color: hsl(var(--primary-hue), 55%, 70%);
 }
 
-/* Summary */
+/* ── Summary ── */
 .post-card-summary {
-  font-size: 0.92em;
+  font-size: 0.9em;
   line-height: 1.65;
   color: hsl(var(--primary-hue), 8%, 38%);
   margin: 0 0 16px 0;
@@ -1015,17 +1147,42 @@ code, pre, kbd {
   color: hsl(var(--primary-hue), 10%, 72%);
 }
 
-/* Read more */
+/* ── Footer (tags + read more) ── */
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.post-card-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.post-card-tag {
+  font-size: 0.72em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 20%, 42%);
+  letter-spacing: 0.01em;
+}
+
+:root[class~="dark"] .post-card-tag {
+  color: hsl(var(--primary-hue), 25%, 65%);
+}
+
 .post-card-readmore {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.88em;
+  font-size: 0.85em;
   font-weight: 500;
   color: hsl(var(--primary-hue), 45%, 42%);
   text-decoration: none;
   transition: color 0.15s ease, gap 0.15s ease;
-  margin-top: auto;
+  white-space: nowrap;
 }
 
 .post-card-readmore:hover {
@@ -1042,7 +1199,7 @@ code, pre, kbd {
 }
 
 /* ══════════════════════════════════════════
-   POST SINGLE — Article header
+   POST SINGLE — Article reading experience
    ══════════════════════════════════════════ */
 
 .post-header {
@@ -1050,10 +1207,11 @@ code, pre, kbd {
 }
 
 .post-header-title {
-  font-size: 2em;
+  font-family: cambria, georgia, "Times New Roman", serif;
+  font-size: 2.2em;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin: 0 0 14px 0;
+  margin: 0 0 16px 0;
   color: hsl(var(--primary-hue), 20%, 18%);
   line-height: 1.2;
 }
@@ -1065,13 +1223,13 @@ code, pre, kbd {
 .post-header-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
 .post-header-date {
-  font-size: 0.85em;
+  font-size: 0.83em;
   font-weight: 500;
   color: hsl(var(--primary-hue), 12%, 48%);
   letter-spacing: 0.02em;
@@ -1079,6 +1237,15 @@ code, pre, kbd {
 
 :root[class~="dark"] .post-header-date {
   color: hsl(var(--primary-hue), 15%, 62%);
+}
+
+.post-header-location {
+  font-size: 0.83em;
+  color: hsl(var(--primary-hue), 15%, 45%);
+}
+
+:root[class~="dark"] .post-header-location {
+  color: hsl(var(--primary-hue), 18%, 62%);
 }
 
 .post-header-tags {
@@ -1090,20 +1257,19 @@ code, pre, kbd {
 .post-header-tag {
   display: inline-block;
   padding: 3px 12px;
-  font-size: 0.75em;
+  font-size: 0.73em;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
   border-radius: 999px;
-  background: hsla(32, 70%, 65%, 0.2);
-  color: hsl(32, 55%, 42%);
-  border: 1px solid hsla(32, 50%, 55%, 0.2);
+  background: hsla(var(--primary-hue), 25%, 75%, 0.15);
+  color: hsl(var(--primary-hue), 25%, 38%);
+  border: 1px solid hsla(var(--primary-hue), 25%, 65%, 0.2);
 }
 
 :root[class~="dark"] .post-header-tag {
-  background: hsla(32, 50%, 55%, 0.25);
-  color: hsl(32, 60%, 72%);
-  border-color: hsla(32, 50%, 55%, 0.25);
+  background: hsla(var(--primary-hue), 25%, 35%, 0.2);
+  color: hsl(var(--primary-hue), 30%, 70%);
+  border-color: hsla(var(--primary-hue), 25%, 45%, 0.25);
 }
 
 .post-header-image {
@@ -1131,54 +1297,90 @@ code, pre, kbd {
   margin-top: 32px;
 }
 
-/* ══════════════════════════════════════════
-   COLORFUL DECORATIONS
-   ══════════════════════════════════════════ */
-
-/* Floating shapes on posts page */
-.posts-hero .shape {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.6;
+/* ── Article blockquote ── */
+.post-article-content .content blockquote {
+  position: relative;
+  margin: 28px 0;
+  padding: 20px 28px;
+  border-left: 3px solid hsl(var(--primary-hue), 45%, 50%);
+  border-radius: 0 12px 12px 0;
+  background: hsla(var(--primary-hue), 25%, 95%, 0.5);
+  font-size: 1.05em;
+  font-style: italic;
+  color: hsl(var(--primary-hue), 12%, 28%);
 }
 
-.posts-hero .shape-1 {
-  top: 15px;
-  right: 30px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: hsl(32, 85%, 65%);
-  animation: float 3s ease-in-out infinite;
+:root[class~="dark"] .post-article-content .content blockquote {
+  background: hsla(var(--primary-hue), 15%, 15%, 0.4);
+  color: hsla(0, 0%, 85%, 0.85);
+  border-left-color: hsl(var(--primary-hue), 45%, 45%);
 }
 
-.posts-hero .shape-2 {
-  bottom: 20px;
-  left: 40px;
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  background: hsl(175, 60%, 55%);
-  transform: rotate(45deg);
-  animation: float 2.5s ease-in-out infinite 0.5s;
+/* ── Article hr ── */
+.post-article-content .content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(var(--primary-hue), 30%, 65%, 0.4) 30%,
+    hsl(var(--accent-hue), 40%, 65%, 0.3) 70%,
+    transparent 100%);
+  margin: 40px 0;
 }
 
-.posts-hero .shape-3 {
-  top: 30px;
-  left: 60px;
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  background: hsl(280, 60%, 68%);
-  animation: float 2s ease-in-out infinite 1s;
+/* ── Article section headers ── */
+.post-article-content .content h2 {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: hsl(var(--primary-hue), 18%, 22%);
+  margin-top: 2.2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid hsla(var(--primary-hue), 20%, 80%, 0.4);
+  text-transform: none;
+  letter-spacing: -0.01em;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+:root[class~="dark"] .post-article-content .content h2 {
+  color: hsla(0, 0%, 90%, 0.9);
+  border-bottom-color: hsla(var(--primary-hue), 15%, 25%, 0.4);
 }
 
-/* Make blog pager look nicer on posts page */
+/* ── Back to posts link ── */
+.post-back-link {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid hsla(var(--primary-hue), 15%, 80%, 0.3);
+}
+
+:root[class~="dark"] .post-back-link {
+  border-top-color: hsla(var(--primary-hue), 15%, 25%, 0.3);
+}
+
+.post-back-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 35%, 42%);
+  text-decoration: none;
+  transition: color 0.15s ease, gap 0.15s ease;
+}
+
+.post-back-link a:hover {
+  color: hsl(var(--primary-hue), 50%, 30%);
+  gap: 10px;
+}
+
+:root[class~="dark"] .post-back-link a {
+  color: hsl(var(--primary-hue), 40%, 65%);
+}
+
+:root[class~="dark"] .post-back-link a:hover {
+  color: hsl(var(--primary-hue), 50%, 75%);
+}
+
+/* ── Pager ── */
 .posts-grid + .hx\:mt-10,
 .posts-grid + nav {
   margin-top: 40px;
@@ -1194,19 +1396,18 @@ code, pre, kbd {
 /* ══════════════════════════════════════════
    PUBLICATIONS LIST STYLING
    ══════════════════════════════════════════ */
-
 .content h2 + ul {
   list-style: none;
   padding-left: 0;
 }
 
 .content h2 + ul li {
-  padding: 14px 20px;
-  margin-bottom: 10px;
+  padding: 16px 22px;
+  margin-bottom: 12px;
   border-radius: 10px;
   background: hsl(var(--primary-hue), 10%, 97%);
-  border-left: 3px solid transparent;
-  transition: background 0.15s ease, border-left-color 0.15s ease;
+  border-left: 3px solid hsla(var(--primary-hue), var(--primary-saturation), 55%, 0.5);
+  transition: background 0.15s ease, border-left-color 0.15s ease, transform 0.15s ease;
 }
 
 .content h2 + ul li:hover {
@@ -1216,9 +1417,45 @@ code, pre, kbd {
 
 :root[class~="dark"] .content h2 + ul li {
   background: hsl(var(--primary-hue), 10%, 11%);
+  border-left-color: hsla(var(--primary-hue), 40%, 45%, 0.5);
 }
 
 :root[class~="dark"] .content h2 + ul li:hover {
   background: hsl(var(--primary-hue), 10%, 15%);
   border-left-color: hsl(var(--primary-hue), 40%, 48%);
+}
+
+/* ── DOI link as a small pill button ── */
+.content h2 + ul li a {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 10px;
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: hsl(var(--primary-hue), var(--primary-saturation), 38%);
+  background: hsla(var(--primary-hue), 30%, 70%, 0.18);
+  border: 1px solid hsla(var(--primary-hue), 30%, 60%, 0.3);
+  border-radius: 999px;
+  text-decoration: none;
+  vertical-align: 1px;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.content h2 + ul li a:hover {
+  color: #fff;
+  background: hsla(var(--primary-hue), var(--primary-saturation), 42%, 0.9);
+  border-color: hsla(var(--primary-hue), var(--primary-saturation), 42%, 0.9);
+}
+
+:root[class~="dark"] .content h2 + ul li a {
+  color: hsl(var(--primary-hue), 45%, 70%);
+  background: hsla(var(--primary-hue), 30%, 30%, 0.25);
+  border-color: hsla(var(--primary-hue), 30%, 40%, 0.4);
+}
+
+:root[class~="dark"] .content h2 + ul li a:hover {
+  color: #fff;
+  background: hsla(var(--primary-hue), 45%, 42%, 0.85);
+  border-color: hsla(var(--primary-hue), 45%, 42%, 0.85);
 }

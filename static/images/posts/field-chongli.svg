@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8d8e0"/>
+      <stop offset="60%" stop-color="#d8e8ed"/>
+      <stop offset="100%" stop-color="#e8e8e0"/>
+    </linearGradient>
+    <linearGradient id="mtn1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6a9aa5"/>
+      <stop offset="100%" stop-color="#4a7a85"/>
+    </linearGradient>
+    <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8aaab5"/>
+      <stop offset="100%" stop-color="#6a8a95"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <!-- Back mountains -->
+  <path d="M0 250 L100 160 L200 220 L320 120 L450 200 L580 140 L700 210 L800 170 L800 300 L0 300 Z" fill="url(#mtn2)" opacity="0.6"/>
+  <!-- Front mountains with snow caps -->
+  <path d="M0 320 L80 230 L160 280 L280 160 L320 180 L400 240 L500 200 L600 260 L700 220 L800 280 L800 450 L0 450 Z" fill="url(#mtn1)"/>
+  <!-- Snow caps -->
+  <path d="M280 160 L260 195 L300 195 Z" fill="#f0f5f0" opacity="0.85"/>
+  <path d="M160 280 L145 305 L175 305 Z" fill="#f0f5f0" opacity="0.7"/>
+  <!-- Ski lift -->
+  <line x1="120" y1="340" x2="380" y2="200" stroke="#3a5a65" stroke-width="2" opacity="0.6"/>
+  <circle cx="180" cy="298" r="4" fill="#3a5a65"/>
+  <line x1="180" y1="298" x2="180" y2="318" stroke="#3a5a65" stroke-width="1.5"/>
+  <rect x="172" y="318" width="16" height="6" rx="2" fill="#3a5a65"/>
+  <circle cx="280" cy="240" r="4" fill="#3a5a65"/>
+  <line x1="280" y1="240" x2="280" y2="260" stroke="#3a5a65" stroke-width="1.5"/>
+  <rect x="272" y="260" width="16" height="6" rx="2" fill="#3a5a65"/>
+  <!-- Title overlay -->
+  <rect x="0" y="350" width="800" height="100" fill="#1a2a30" opacity="0.15"/>
+  <text x="40" y="395" font-family="Georgia, serif" font-size="28" fill="#1a3a40" font-weight="600">Chongli Field Notes</text>
+  <text x="40" y="420" font-family="sans-serif" font-size="14" fill="#2a4a50" opacity="0.8">January 2024 · −18°C</text>
+</svg>

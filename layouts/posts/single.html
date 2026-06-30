@@ -8,23 +8,26 @@
         {{ partial "breadcrumb.html" (dict "page" . "enable" false) }}
         <br class="hx:mt-1.5 hx:text-sm" />
 
-        <!-- Post header with image -->
+        <!-- Post header -->
         <div class="post-header">
           {{ if .Title }}<h1 class="post-header-title">{{ .Title }}</h1>{{ end }}
           <div class="post-header-meta">
             <span class="post-header-date">{{ partial "utils/format-date" .Date }}</span>
+            {{- with .Params.location }}
+            <span class="post-header-location">📍 {{ . }}</span>
+            {{- end }}
             {{- if .Params.tags }}
-              <div class="post-header-tags">
-                {{- range .Params.tags }}
-                  <span class="post-header-tag">{{ . }}</span>
-                {{- end }}
-              </div>
+            <div class="post-header-tags">
+              {{- range .Params.tags }}
+              <span class="post-header-tag">#{{ . }}</span>
+              {{- end }}
+            </div>
             {{- end }}
           </div>
           {{- if .Params.image }}
-            <div class="post-header-image">
-              <img src="{{ .Params.image }}" alt="{{ .Title }}" />
-            </div>
+          <div class="post-header-image">
+            <img src="{{ .Params.image }}" alt="{{ .Title }}" />
+          </div>
           {{- end }}
         </div>
 
@@ -34,6 +37,13 @@
             {{ .Content }}
             {{ partial "custom/content-end.html" . }}
           </div>
+        </div>
+
+        <div class="post-back-link">
+          <a href="{{ .Site.LanguagePrefix }}/posts/">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            {{ T "backToPosts" | default "Back to posts" }}
+          </a>
         </div>
 
         <div class="hx:mt-16"></div>
