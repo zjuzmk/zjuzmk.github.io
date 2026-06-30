@@ -363,39 +363,53 @@ html, body {
 
 .about-profile {
   display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  margin: 20px 0 40px;
-  padding: 32px;
-  background: hsl(var(--primary-hue), 12%, 97%);
-  border-radius: 16px;
-  border: 1px solid hsl(var(--primary-hue), 15%, 90%);
+  gap: 34px;
+  align-items: center;
+  margin: 8px 0 48px;
+  padding: 36px;
+  background:
+    linear-gradient(135deg,
+      hsla(var(--primary-hue), 25%, 96%, 0.85) 0%,
+      hsla(var(--primary-hue), 18%, 98%, 0.9) 100%);
+  border-radius: 20px;
+  border: 1px solid hsla(var(--primary-hue), 20%, 85%, 0.6);
+  box-shadow:
+    0 1px 2px hsla(var(--primary-hue), 20%, 20%, 0.04),
+    0 12px 40px hsla(var(--primary-hue), 20%, 25%, 0.08);
   counter-reset: about-section;
 }
 
 :root[class~="dark"] .about-profile {
-  background: hsl(var(--primary-hue), 10%, 11%);
-  border-color: hsl(var(--primary-hue), 10%, 20%);
+  background:
+    linear-gradient(135deg,
+      hsla(var(--primary-hue), 15%, 12%, 0.85) 0%,
+      hsla(var(--primary-hue), 10%, 10%, 0.9) 100%);
+  border-color: hsla(var(--primary-hue), 15%, 25%, 0.5);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.2),
+    0 12px 40px rgba(0,0,0,0.25);
 }
 
 .about-photo {
   flex-shrink: 0;
-  width: 180px;
-  height: 220px;
+  width: 190px;
+  height: 232px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow:
-    0 8px 30px rgba(0,0,0,0.12),
-    0 0 0 5px hsla(var(--primary-hue), 40%, 85%, 0.5);
   background: hsl(var(--primary-hue), 12%, 97%);
   align-self: center;
+  box-shadow:
+    0 10px 36px rgba(0,0,0,0.12),
+    0 0 0 6px hsla(var(--primary-hue), 40%, 88%, 0.45),
+    0 0 0 12px hsla(var(--primary-hue), 35%, 92%, 0.25);
 }
 
 :root[class~="dark"] .about-photo {
   background: hsl(var(--primary-hue), 10%, 11%);
   box-shadow:
-    0 8px 30px rgba(0,0,0,0.3),
-    0 0 0 5px hsla(var(--primary-hue), 30%, 30%, 0.5);
+    0 10px 36px rgba(0,0,0,0.32),
+    0 0 0 6px hsla(var(--primary-hue), 30%, 32%, 0.45),
+    0 0 0 12px hsla(var(--primary-hue), 25%, 22%, 0.25);
 }
 
 .about-photo .profile-img {
@@ -467,6 +481,115 @@ html, body {
   .hero-fullscreen {
     min-height: 500px;
   }
+}
+
+/* ── Fieldwork site cards (replaces the markdown table) ── */
+.site-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 24px 0 8px;
+}
+
+@media (min-width: 640px) {
+  .site-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.site-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 22px;
+  background: hsl(var(--primary-hue), 12%, 98%);
+  border: 1px solid hsl(var(--primary-hue), 10%, 90%);
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.site-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
+  border-color: hsla(var(--primary-hue), 25%, 70%, 0.45);
+}
+
+:root[class~="dark"] .site-card {
+  background: hsl(var(--primary-hue), 10%, 10%);
+  border-color: hsl(var(--primary-hue), 10%, 18%);
+}
+
+:root[class~="dark"] .site-card:hover {
+  border-color: hsla(var(--primary-hue), 20%, 30%, 0.55);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.site-card-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: #fff;
+  background: hsl(var(--primary-hue), var(--primary-saturation), 46%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  margin-top: 2px;
+}
+
+:root[class~="dark"] .site-card-num {
+  background: hsl(var(--primary-hue), 45%, 42%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.site-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.site-card-title {
+  margin: 0 0 6px 0;
+  font-size: 1.05em;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: hsl(var(--primary-hue), 22%, 18%);
+}
+
+:root[class~="dark"] .site-card-title {
+  color: hsla(0, 0%, 94%, 0.95);
+}
+
+.site-card-focus {
+  margin: 0 0 10px 0;
+  font-size: 0.9em;
+  line-height: 1.55;
+  color: hsl(var(--primary-hue), 8%, 38%);
+}
+
+:root[class~="dark"] .site-card-focus {
+  color: hsl(var(--primary-hue), 10%, 72%);
+}
+
+.site-card-period {
+  display: inline-block;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: hsl(var(--accent-hue), var(--accent-saturation), 42%);
+  background: hsla(var(--accent-hue), var(--accent-saturation), 55%, 0.12);
+  border: 1px solid hsla(var(--accent-hue), var(--accent-saturation), 50%, 0.2);
+  border-radius: 6px;
+  padding: 3px 10px;
+}
+
+:root[class~="dark"] .site-card-period {
+  color: hsl(var(--accent-hue), var(--accent-saturation), 60%);
+  background: hsla(var(--accent-hue), var(--accent-saturation), 45%, 0.16);
+  border-color: hsla(var(--accent-hue), var(--accent-saturation), 50%, 0.28);
 }
 
 /* ── About section headings: numbered, serif, non-uppercase ── */
@@ -814,58 +937,6 @@ html, body {
 .research-popup p {
   margin: 0;
   max-width: 260px;
-}
-
-/* ── Fieldwork table: numbered rows as a legend for the map ── */
-.map-section + table {
-  counter-reset: site-row;
-  margin-top: 24px;
-}
-
-.map-section + table thead tr::before {
-  content: "#";
-  display: table-cell;
-  width: 2.2em;
-  padding: 10px 6px 10px 16px;
-  font-size: 0.82em;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: hsl(var(--primary-hue), 12%, 25%);
-  background: hsl(var(--primary-hue), 18%, 94%);
-  border-bottom: 2px solid hsl(var(--primary-hue), 25%, 82%);
-}
-
-:root[class~="dark"] .map-section + table thead tr::before {
-  color: hsl(var(--primary-hue), 15%, 75%);
-  background: hsl(var(--primary-hue), 15%, 14%);
-  border-bottom-color: hsl(var(--primary-hue), 20%, 28%);
-}
-
-.map-section + table tbody tr {
-  counter-increment: site-row;
-}
-
-.map-section + table tbody tr::before {
-  content: counter(site-row);
-  display: table-cell;
-  width: 2.2em;
-  padding: 10px 6px 10px 16px;
-  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
-  font-size: 0.85em;
-  font-weight: 600;
-  color: hsl(var(--primary-hue), var(--primary-saturation), 40%);
-  border-bottom: 1px solid hsl(var(--primary-hue), 10%, 90%);
-}
-
-:root[class~="dark"] .map-section + table tbody tr::before {
-  color: hsl(var(--primary-hue), 45%, 60%);
-  border-bottom-color: hsl(var(--primary-hue), 10%, 20%);
-}
-
-.map-section + table tbody tr:last-child td,
-.map-section + table tbody tr:last-child::before {
-  border-bottom: none;
 }
 
 /* ══════════════════════════════════════════

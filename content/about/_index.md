@@ -180,9 +180,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div>
 
-| Location | Research Focus | Period |
-|----------|---------------|--------|
-| **Chongli, Hebei** | Olympic urbanization, ski resorts, rural restructuring | 2021–2024 |
-| **Beijing** | Danwei compounds, Olympic industrial heritage | 2018–2024 |
-| **Hangzhou, Zhejiang** | Grand Canal heritage conservation | 2015–2016 |
-| **Shenzhen, Guangdong** | Live music venues, urban cultural spaces | 2018–2020 |
+<div class="site-cards">
+
+<div class="site-card">
+<div class="site-card-num">01</div>
+<div class="site-card-body">
+<h3 class="site-card-title">Chongli, Hebei</h3>
+<p class="site-card-focus">Olympic urbanization, ski resorts, rural restructuring</p>
+<span class="site-card-period">2021–2024</span>
+</div>
+</div>
+
+<div class="site-card">
+<div class="site-card-num">02</div>
+<div class="site-card-body">
+<h3 class="site-card-title">Beijing</h3>
+<p class="site-card-focus">Danwei compounds, Olympic industrial heritage</p>
+<span class="site-card-period">2018–2024</span>
+</div>
+</div>
+
+<div class="site-card">
+<div class="site-card-num">03</div>
+<div class="site-card-body">
+<h3 class="site-card-title">Hangzhou, Zhejiang</h3>
+<p class="site-card-focus">Grand Canal heritage conservation</p>
+<span class="site-card-period">2015–2016</span>
+</div>
+</div>
+
+<div class="site-card">
+<div class="site-card-num">04</div>
+<div class="site-card-body">
+<h3 class="site-card-title">Shenzhen, Guangdong</h3>
+<p class="site-card-focus">Live music venues, urban cultural spaces</p>
+<span class="site-card-period">2018–2020</span>
+</div>
+</div>
+
+</div>

@@ -180,9 +180,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div>
 
-| 地点 | 研究焦点 | 时期 |
-|------|----------|------|
-| **河北崇礼** | 奥运城市化、滑雪度假区、乡村重构 | 2021–2024 |
-| **北京** | 单位制社区、奥运工业遗产 | 2018–2024 |
-| **浙江杭州** | 大运河遗产保护 | 2015–2016 |
-| **广东深圳** | 现场音乐场所、城市文化空间 | 2018–2020 |
+<div class="site-cards">
+
+<div class="site-card">
+<div class="site-card-num">01</div>
+<div class="site-card-body">
+<h3 class="site-card-title">河北崇礼</h3>
+<p class="site-card-focus">奥运城市化、滑雪度假区、乡村重构</p>
+<span class="site-card-period">2021–2024</span>
+</div>
+</div>
+
+<div class="site-card">
+<div class="site-card-num">02</div>
+<div class="site-card-body">
+<h3 class="site-card-title">北京</h3>
+<p class="site-card-focus">单位制社区、奥运工业遗产</p>
+<span class="site-card-period">2018–2024</span>
+</div>
+</div>
+
+<div class="site-card">
+<div class="site-card-num">03</div>
+<div class="site-card-body">
+<h3 class="site-card-title">浙江杭州</h3>
+<p class="site-card-focus">大运河遗产保护</p>
+<span class="site-card-period">2015–2016</span>
+</div>
+</div>
+
+<div class="site-card">
+<div class="site-card-num">04</div>
+<div class="site-card-body">
+<h3 class="site-card-title">广东深圳</h3>
+<p class="site-card-focus">现场音乐场所、城市文化空间</p>
+<span class="site-card-period">2018–2020</span>
+</div>
+</div>
+
+</div>
