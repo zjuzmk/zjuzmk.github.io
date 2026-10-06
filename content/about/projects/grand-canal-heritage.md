@@ -1,5 +1,6 @@
 ---
 title: "Conservation of the Grand Canal in Urban China"
+description: "MA thesis (HKU, 2015–2016): the mismatch between official heritage discourse and local realities in the conservation of China's Grand Canal, Hangzhou section."
 weight: 5
 ---
 

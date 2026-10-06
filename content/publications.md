@@ -1,5 +1,6 @@
 ---
 title: Publications
+description: "Peer-reviewed articles and book chapters by Mengke Zhang on urban political economy, extended urbanization, land finance, state entrepreneurialism and Chinese urbanism, with DOI links."
 ---
 
 ## Peer-Reviewed Journal Articles

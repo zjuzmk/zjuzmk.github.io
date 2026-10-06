@@ -1,5 +1,6 @@
 ---
 title: "Cultural Heritage at the Beijing 2022 Winter Olympics"
+description: "SNSF research project (EPFL, 2022–2024): how the Beijing 2022 Winter Olympics mobilized cultural heritage for urban regeneration and nation-branding."
 weight: 2
 ---
 

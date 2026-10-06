@@ -22,14 +22,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.163.0
+      HUGO_VERSION: 0.167.0
+      HEXTRA_VERSION: v0.13.0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Clone Hextra theme
-        run: git clone --depth 1 https://github.com/imfing/hextra.git themes/hextra && rm -rf themes/hextra/.git
+        run: git clone --depth 1 --branch "$HEXTRA_VERSION" https://github.com/imfing/hextra.git themes/hextra && rm -rf themes/hextra/.git
       - name: Setup Go
         uses: actions/setup-go@v5
         with:

@@ -10,12 +10,19 @@ languages:
   en:
     label: English
     weight: 1
+    locale: en
+    params:
+      description: Mengke Zhang, PhD in Architecture and Sciences of the City (EPFL). Research on extended urbanization, state entrepreneurialism and mega-events in China.
   zh-cn:
+    title: 张梦珂 Mengke Zhang
     label: 中文
     weight: 2
+    locale: zh-CN
+    params:
+      description: 张梦珂，EPFL 城市与建筑科学博士。研究领域：延伸城市化、国家企业家主义、大型事件与中国的区域发展。
 
 params:
-  description: Mengke Zhang's personal website.
+  description: Mengke Zhang, PhD in Architecture and Sciences of the City (EPFL). Extended urbanization, state entrepreneurialism.
   images:
     - /images/profile.jpg
   navbar:

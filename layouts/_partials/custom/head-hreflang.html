@@ -1,0 +1,10 @@
+{{- /* hreflang alternates: only real translations, so a missing translation never
+       points at another language's homepage. Pages with no translation get none.
+       .AllTranslations is ordered with the default language first -> [0] is x-default. */ -}}
+{{- $translations := .AllTranslations -}}
+{{- if gt (len $translations) 1 -}}
+  {{- range $translations }}
+<link rel="alternate" hreflang="{{ .Language.Locale | default .Language.Lang }}" href="{{ .Permalink }}" />
+  {{- end }}
+<link rel="alternate" hreflang="x-default" href="{{ (index $translations 0).Permalink }}" />
+{{- end -}}

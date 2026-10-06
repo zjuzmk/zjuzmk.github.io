@@ -1,5 +1,6 @@
 ---
 title: Research Projects
+description: "Research projects by Mengke Zhang: Chongli's extended urbanization, cultural heritage at Beijing 2022, platform-mediated live music, danwei property rights and Grand Canal conservation."
 sidebar:
   hide: true
 toc: false

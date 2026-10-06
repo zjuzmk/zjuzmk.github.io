@@ -1,5 +1,6 @@
 ---
 title: 研究项目
+description: "张梦珂的研究项目：崇礼的延伸城市化、北京2022冬奥会文化遗产、平台中介的现场音乐、单位制社区产权演变与大运河遗产保护。"
 sidebar:
   hide: true
 toc: false

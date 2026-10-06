@@ -1,5 +1,6 @@
 ---
 title: "Platform-Mediated Live Music and Urban Cultural Spaces"
+description: "Research project (Peking University Shenzhen, 2018–2020): how digital platforms reshaped live music performance and produced new urban cultural spaces in Chinese cities."
 weight: 3
 ---
 

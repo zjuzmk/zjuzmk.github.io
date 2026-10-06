@@ -1,5 +1,6 @@
 ---
 title: "Property Rights and Spatial Evolution of the Chinese Danwei"
+description: "Research project (Peking University Shenzhen, 2018–2020): how property rights redistribution drove the spatial and institutional transformation of Beijing's danwei compounds."
 weight: 4
 ---
 

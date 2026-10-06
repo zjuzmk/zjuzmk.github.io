@@ -1,5 +1,6 @@
 ---
 title: "Reconfiguring the Mountains: Chongli's Extended Urbanization"
+description: "PhD dissertation (EPFL, 2020–2025): how the 2022 Beijing Winter Olympics drove Chongli's extended urbanization, through land rent, financialization and state entrepreneurialism."
 weight: 1
 ---
 
