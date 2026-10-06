@@ -12,7 +12,7 @@ toc: false
 
 <div class="research-card">
 
-### [崇礼的延伸城市化](/about/projects/chongli-extended-urbanization)
+### [崇礼的延伸城市化](/projects/chongli-extended-urbanization)
 
 **2020–2025** · 博士论文 · EPFL
 
@@ -22,7 +22,7 @@ toc: false
 
 <div class="research-card">
 
-### [北京2022冬奥会文化遗产](/about/projects/beijing2022-cultural-heritage)
+### [北京2022冬奥会文化遗产](/projects/beijing2022-cultural-heritage)
 
 **2022–2024** · SNSF研究项目
 
@@ -32,7 +32,7 @@ toc: false
 
 <div class="research-card">
 
-### [平台中介的现场音乐与城市空间](/about/projects/live-music-urban-spaces)
+### [平台中介的现场音乐与城市空间](/projects/live-music-urban-spaces)
 
 **2018–2020** · 北京大学深圳研究生院
 
@@ -42,7 +42,7 @@ toc: false
 
 <div class="research-card">
 
-### [单位制社区的产权与空间演变](/about/projects/danwei-spatial-transformation)
+### [单位制社区的产权与空间演变](/projects/danwei-spatial-transformation)
 
 **2018–2020** · 北京大学深圳研究生院
 
@@ -52,7 +52,7 @@ toc: false
 
 <div class="research-card">
 
-### [大运河遗产保护](/about/projects/grand-canal-heritage)
+### [大运河遗产保护](/projects/grand-canal-heritage)
 
 **2015–2016** · 硕士论文 · 香港大学
 

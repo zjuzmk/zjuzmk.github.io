@@ -41,7 +41,9 @@ menu:
   main:
     - identifier: about
       name: About
-      pageRef: /about
+      pageRef: /
+      params:
+        fragment: about
       weight: 1
     - identifier: publications
       name: Publications

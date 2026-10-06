@@ -1,0 +1,97 @@
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT — 首页 Hero + 导航栏透明覆盖
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 首页 Hero：留出下一段内容的边，形成滚动提示 ── */
+.hero-fullscreen {
+  height: auto;
+  min-height: min(86dvh, 820px);
+}
+
+@media (max-width: 640px) {
+  .hero-fullscreen {
+    min-height: min(86dvh, 620px);
+  }
+}
+
+/* ── About 区块：沿用默认内容页的排版容器 ── */
+.home-about {
+  width: 100%;
+  padding-top: var(--space-3xl);
+  counter-reset: about-section;
+}
+
+/* ── 导航栏：首页首屏透明覆盖在 hero 上，滚动后恢复毛玻璃底色 ── */
+.hextra-nav-overlay {
+  background: linear-gradient(180deg,
+    hsla(var(--primary-hue), 18%, 16%, 0.28) 0%,
+    hsla(var(--primary-hue), 18%, 16%, 0.06) 60%,
+    transparent 100%);
+  transition: background 0.3s ease;
+}
+
+.hextra-nav-overlay .hextra-nav-container-blur {
+  background: transparent;
+  box-shadow: none;
+}
+
+.hextra-nav-overlay .hextra-nav-container-blur,
+.hextra-nav-overlay a,
+.hextra-nav-overlay button {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.2s ease;
+}
+
+.hextra-nav-overlay a,
+.hextra-nav-overlay button {
+  color: hsl(var(--primary-hue), 25%, 14%);
+}
+
+.hextra-nav-overlay a:hover,
+.hextra-nav-overlay button:hover {
+  color: hsl(var(--primary-hue), 35%, 8%);
+}
+
+:root[class~="dark"] .hextra-nav-overlay a,
+:root[class~="dark"] .hextra-nav-overlay button {
+  color: hsla(0, 0%, 96%, 0.92);
+}
+
+:root[class~="dark"] .hextra-nav-overlay a:hover,
+:root[class~="dark"] .hextra-nav-overlay button:hover {
+  color: #fff;
+}
+
+/* 滚动出 hero 之后：恢复主题的实底色，保证正文顶部可读 */
+.hextra-nav-overlay.hextra-nav-scrolled {
+  background: transparent;
+}
+
+.hextra-nav-overlay.hextra-nav-scrolled .hextra-nav-container-blur {
+  background: hsl(var(--primary-hue), 20%, 99%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+:root[class~="dark"] .hextra-nav-overlay.hextra-nav-scrolled .hextra-nav-container-blur {
+  background: hsl(var(--primary-hue), 12%, 8%);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+
+.hextra-nav-overlay.hextra-nav-scrolled a,
+.hextra-nav-overlay.hextra-nav-scrolled button {
+  color: hsl(var(--primary-hue), 10%, 30%);
+}
+
+.hextra-nav-overlay.hextra-nav-scrolled a:hover,
+.hextra-nav-overlay.hextra-nav-scrolled button:hover {
+  color: hsl(var(--primary-hue), 20%, 18%);
+}
+
+:root[class~="dark"] .hextra-nav-overlay.hextra-nav-scrolled a,
+:root[class~="dark"] .hextra-nav-overlay.hextra-nav-scrolled button {
+  color: hsl(var(--primary-hue), 12%, 72%);
+}
+
+:root[class~="dark"] .hextra-nav-overlay.hextra-nav-scrolled a:hover,
+:root[class~="dark"] .hextra-nav-overlay.hextra-nav-scrolled button:hover {
+  color: hsl(var(--primary-hue), 15%, 92%);
+}

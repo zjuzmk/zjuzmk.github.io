@@ -71,8 +71,10 @@ article h1 {
   margin-bottom: 0.3em;
 }
 
+/* overflow-x: hidden 会把 body 变成滚动容器，从而使吸顶导航栏失效；
+   clip 同样裁掉横向溢出，但不建立滚动容器。 */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ── 区块标题（h2）：小号大写、带下划线 ── */

@@ -12,7 +12,7 @@ toc: false
 
 <div class="research-card">
 
-### [Chongli's Extended Urbanization](/about/projects/chongli-extended-urbanization)
+### [Chongli's Extended Urbanization](/projects/chongli-extended-urbanization)
 
 **2020–2025** · PhD Dissertation, EPFL
 
@@ -22,7 +22,7 @@ How did the 2022 Beijing Winter Olympics transform a poor mountain county into C
 
 <div class="research-card">
 
-### [Cultural Heritage at Beijing 2022](/about/projects/beijing2022-cultural-heritage)
+### [Cultural Heritage at Beijing 2022](/projects/beijing2022-cultural-heritage)
 
 **2022–2024** · SNSF Research Project
 
@@ -32,7 +32,7 @@ How the Beijing 2022 Winter Olympics mobilized cultural heritage for urban regen
 
 <div class="research-card">
 
-### [Platform-Mediated Live Music and Urban Spaces](/about/projects/live-music-urban-spaces)
+### [Platform-Mediated Live Music and Urban Spaces](/projects/live-music-urban-spaces)
 
 **2018–2020** · Peking University Shenzhen
 
@@ -42,7 +42,7 @@ How digital platforms reshape live music performance and create new urban cultur
 
 <div class="research-card">
 
-### [Property Rights and the Danwei Compound](/about/projects/danwei-spatial-transformation)
+### [Property Rights and the Danwei Compound](/projects/danwei-spatial-transformation)
 
 **2018–2020** · Peking University Shenzhen
 
@@ -52,7 +52,7 @@ How property rights redistribution has driven the spatial and institutional tran
 
 <div class="research-card">
 
-### [Conservation of the Grand Canal](/about/projects/grand-canal-heritage)
+### [Conservation of the Grand Canal](/projects/grand-canal-heritage)
 
 **2015–2016** · MA Thesis, HKU
 
