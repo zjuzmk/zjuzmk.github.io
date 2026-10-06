@@ -151,7 +151,8 @@ description: "张梦珂，EPFL 城市与建筑科学博士，研究城市政治�
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var isDark = document.documentElement.classList.contains('dark');
+  var OSM_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var OSM_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
   var map = L.map('research-map', {
     zoomControl: false,
@@ -160,30 +161,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-  var lightTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 19
-  });
+  var tiles = L.tileLayer(OSM_URL, {
+    attribution: OSM_ATTRIBUTION,
+    maxZoom: 19,
+    crossOrigin: true
+  }).addTo(map);
 
-  var darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 19
-  });
-
-  (isDark ? darkTiles : lightTiles).addTo(map);
-
-  var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.attributeName === 'class') {
-        var nowDark = document.documentElement.classList.contains('dark');
-        map.removeLayer(nowDark ? lightTiles : darkTiles);
-        map.addLayer(nowDark ? darkTiles : lightTiles);
-      }
+  // 瓦片拿不到时不留一块空白地图
+  var fallback = document.getElementById('research-map-fallback');
+  tiles.on('tileerror', function() { if (fallback) fallback.hidden = false; });
+  if (fallback) {
+    fallback.addEventListener('click', function(event) {
+      // 只放行本站写死的地图链接，避免把 href 变成任意外链
+      if (!fallback.href.startsWith('https://www.openstreetmap.org/')) event.preventDefault();
     });
-  });
-  observer.observe(document.documentElement, { attributes: true });
+  }
 
   var sites = [
     {
@@ -209,16 +201,15 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   sites.forEach(function(s) {
-    var marker = L.marker([s.lat, s.lng], {
+    L.marker([s.lat, s.lng], {
       icon: L.divIcon({
-        className: 'research-marker',
+        // research-marker-icon 用于深色模式下还原标记配色（见 components/map.css）
+        className: 'research-marker research-marker-icon',
         html: '<div class="research-marker-dot"></div><div class="research-marker-pulse"></div>',
         iconSize: [20, 20],
         iconAnchor: [10, 10]
       })
-    }).addTo(map);
-
-    marker.bindPopup(
+    }).addTo(map).bindPopup(
       '<div class="research-popup"><strong>' + s.title + '</strong><p>' + s.desc + '</p></div>',
       { className: 'research-popup-wrapper', closeButton: false }
     );
@@ -228,42 +219,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div>
 
+<p class="map-fallback" id="research-map-fallback" hidden>
+瓦片加载失败，请前往
+<a href="https://www.openstreetmap.org/#map=5/34.00/116.00" target="_blank" rel="noopener">OpenStreetMap</a>
+查看研究地点。
+</p>
+
+</div>
+
 <div class="site-cards">
 
 <div class="site-card">
-<div class="site-card-num">01</div>
-<div class="site-card-body">
 <h3 class="site-card-title">河北崇礼</h3>
 <p class="site-card-focus">奥运城市化、滑雪度假区、乡村重构</p>
 <span class="site-card-period">2021–2024</span>
 </div>
-</div>
 
 <div class="site-card">
-<div class="site-card-num">02</div>
-<div class="site-card-body">
 <h3 class="site-card-title">北京</h3>
 <p class="site-card-focus">单位制社区、奥运工业遗产</p>
 <span class="site-card-period">2018–2024</span>
 </div>
-</div>
 
 <div class="site-card">
-<div class="site-card-num">03</div>
-<div class="site-card-body">
 <h3 class="site-card-title">浙江杭州</h3>
 <p class="site-card-focus">大运河遗产保护</p>
 <span class="site-card-period">2015–2016</span>
 </div>
-</div>
 
 <div class="site-card">
-<div class="site-card-num">04</div>
-<div class="site-card-body">
 <h3 class="site-card-title">广东深圳</h3>
 <p class="site-card-focus">现场音乐场所、城市文化空间</p>
 <span class="site-card-period">2018–2020</span>
-</div>
 </div>
 
 </div>

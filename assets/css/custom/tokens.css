@@ -36,6 +36,11 @@
   --hextra-navbar-height: 54px;
   --page-width: 1440px;
   --content-width: 800px;
+  /* 首页内容区比阅读页宽：hero 是整屏的，内容跟着窄会显得断裂。
+     正文另行限宽，所以加宽不会把行长拉垮。
+     用 px 而不是 ch：ch 随 em 字号缩放，1.5em 的标题会比正文宽出 50%。 */
+  --home-width: 1040px;
+  --prose-width: 560px;
   --navbar-height: 54px;
 
   /* ── 圆角 ── */

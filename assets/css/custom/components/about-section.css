@@ -1,10 +1,9 @@
 /* ══════════════════════════════════════════════════════════════════
-   COMPONENT — 区块标题（首页 About / Fieldwork）
+   COMPONENT — 区块标题（首页 About / Research Projects / Fieldwork）
    ══════════════════════════════════════════════════════════════════ */
 
-/* ── 编号区块标题：衬线、带序号与渐变横线 ── */
+/* ── 区块标题：衬线、与正文同宽、右侧一条渐变短线 ── */
 .content h2.about-section {
-  counter-increment: about-section;
   font-family: var(--font-serif);
   font-size: 1.5em;
   font-weight: 700;
@@ -16,37 +15,23 @@
   margin-top: 3.2em;
   margin-bottom: 0.4em;
   display: flex;
-  align-items: baseline;
-  gap: 14px;
-}
-
-.content h2.about-section::before {
-  content: "0" counter(about-section);
-  font-family: var(--font-mono);
-  font-size: 0.6em;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: hsla(var(--primary-hue), var(--primary-saturation), 45%, 0.55);
-  position: relative;
-  top: -0.05em;
+  align-items: center;
+  gap: 16px;
+  max-width: var(--prose-width);
 }
 
 .content h2.about-section::after {
   content: "";
   flex: 1;
+  max-width: 240px;
   height: 1px;
   background: linear-gradient(90deg,
-    hsla(var(--primary-hue), 20%, 80%, 0.5) 0%,
+    hsla(var(--primary-hue), 20%, 80%, 0.6) 0%,
     transparent 100%);
-  align-self: center;
 }
 
 :root[class~="dark"] .content h2.about-section {
   color: var(--ink-strong);
-}
-
-:root[class~="dark"] .content h2.about-section::before {
-  color: hsla(var(--primary-hue), 45%, 60%, 0.6);
 }
 
 :root[class~="dark"] .content h2.about-section::after {

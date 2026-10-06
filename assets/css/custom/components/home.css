@@ -14,11 +14,18 @@
   }
 }
 
-/* ── About 区块：沿用默认内容页的排版容器 ── */
+/* ── About 区块：比阅读页更宽，正文另行限宽 ──
+   #content 上的 hextra-max-content-width 会连带把主容器压到 800px，
+   所以在首页局部抬掉它；其它页面读的仍是 800px，不受影响。 */
+#content:has(.home-about) {
+  --hextra-max-content-width: var(--home-width);
+}
+
 .home-about {
   width: 100%;
+  max-width: var(--home-width);
+  margin-inline: auto;
   padding-top: var(--space-3xl);
-  counter-reset: about-section;
 }
 
 /* ── 导航栏：首页首屏透明覆盖在 hero 上，滚动后恢复毛玻璃底色 ── */

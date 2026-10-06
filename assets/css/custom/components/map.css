@@ -32,6 +32,30 @@
   box-shadow: inset 0 0 0 1px hsla(var(--primary-hue), 15%, 25%, 0.35);
 }
 
+/* OpenStreetMap 只有浅色瓦片，深色模式用滤镜反相。
+   只作用在瓦片容器上：直接给 .leaflet-container 加 filter 会新建包含块，
+   让 Leaflet 的 position: fixed 弹窗错位。 */
+:root[class~="dark"] .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.92);
+}
+
+/* 标记和弹窗不在滤镜范围内，深色下局部反相还原成原配色 */
+:root[class~="dark"] .research-marker-icon,
+:root[class~="dark"] .research-popup-wrapper {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* 瓦片加载失败时的兜底文案 */
+.map-fallback {
+  margin: var(--space-md) 0 0;
+  font-size: 0.9em;
+  color: var(--ink-muted);
+}
+
+.map-fallback a {
+  color: var(--brand-ink);
+}
+
 /* ── 自定义标记 ── */
 .research-marker {
   position: relative;
@@ -73,39 +97,14 @@
   background: hsla(var(--primary-hue), 55%, 58%, 0.35);
 }
 
-/* ── 标记上的编号徽章 ── */
-.research-marker-num {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-25%, -25%);
-  z-index: 3;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
-  border-radius: var(--radius-pill);
-  background: hsl(var(--primary-hue), var(--primary-saturation), 32%);
-  color: #fff;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 16px;
-  text-align: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-  border: 1.5px solid #fff;
-}
-
-:root[class~="dark"] .research-marker-num {
-  background: hsl(var(--primary-hue), 45%, 42%);
-  border-color: hsl(var(--primary-hue), 20%, 14%);
-}
-
 @keyframes marker-pulse {
   0% { transform: translate(-50%, -50%) scale(0.6); opacity: 1; }
   100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
 }
 
-/* ── 弹出框 ── */
+/* ── 弹出框 ──
+   弹窗在瓦片滤镜之外，所以这里始终用浅色配色（会被 .research-popup-wrapper
+   上的反相滤镜翻成深色），不要再写深色分支，否则两处反转会互相抵消。 */
 .research-popup-wrapper .leaflet-popup-content-wrapper {
   background: hsl(var(--primary-hue), 10%, 98%);
   border: 1px solid hsla(var(--primary-hue), 15%, 80%, 0.5);
@@ -113,20 +112,9 @@
   box-shadow: 0 6px 24px rgba(0,0,0,0.12);
 }
 
-:root[class~="dark"] .research-popup-wrapper .leaflet-popup-content-wrapper {
-  background: hsl(var(--primary-hue), 10%, 12%);
-  border-color: hsla(var(--primary-hue), 15%, 30%, 0.6);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
-}
-
 .research-popup-wrapper .leaflet-popup-tip {
   background: hsl(var(--primary-hue), 10%, 98%);
   border: 1px solid hsla(var(--primary-hue), 15%, 80%, 0.5);
-}
-
-:root[class~="dark"] .research-popup-wrapper .leaflet-popup-tip {
-  background: hsl(var(--primary-hue), 10%, 12%);
-  border-color: hsla(var(--primary-hue), 15%, 30%, 0.6);
 }
 
 .research-popup {
@@ -135,20 +123,12 @@
   color: hsl(var(--primary-hue), 10%, 22%);
 }
 
-:root[class~="dark"] .research-popup {
-  color: hsla(0, 0%, 92%, 0.9);
-}
-
 .research-popup strong {
   display: block;
   font-size: 1.05em;
   font-weight: 600;
   margin-bottom: 4px;
   color: var(--brand-ink);
-}
-
-:root[class~="dark"] .research-popup strong {
-  color: hsl(var(--primary-hue), 55%, 72%);
 }
 
 .research-popup p {
