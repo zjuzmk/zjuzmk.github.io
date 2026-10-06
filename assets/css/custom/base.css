@@ -1,0 +1,122 @@
+/* ══════════════════════════════════════════════════════════════════
+   ② BASE — 全局基底
+   字体、背景、页面级排版。改这里影响全站。
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 全局字体 ── */
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -20%,
+      hsla(var(--primary-hue), 40%, 88%, 0.25) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 100%,
+      hsla(var(--primary-hue), 30%, 85%, 0.18) 0%,
+      transparent 60%);
+  background-attachment: fixed;
+}
+
+:root[class~="dark"] body {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -20%,
+      hsla(var(--primary-hue), 30%, 20%, 0.2) 0%,
+      transparent 60%);
+  background-attachment: fixed;
+}
+
+/* ── 界面元素统一用无衬线 ── */
+nav, button, input, textarea, select,
+ul, ol, li, table, th, td,
+h1, h2, h3, h4, h5, h6,
+.hero-name, .hero-subtitle,
+.research-card h3 {
+  font-family: var(--font-sans);
+}
+
+/* ── 标题排版 ── */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
+h1 { font-weight: 650; }
+h2 { font-weight: 600; }
+h3 { font-weight: 550; }
+
+/* ── 正文用衬线，提升长文可读性 ── */
+.content p,
+article p,
+.content blockquote,
+article blockquote {
+  font-family: var(--font-serif);
+}
+
+/* ── 内容区基准 ── */
+.content {
+  line-height: 1.8;
+}
+
+.content a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+article h1 {
+  margin-bottom: 0.3em;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* ── 区块标题（h2）：小号大写、带下划线 ── */
+.content h2 {
+  position: relative;
+  font-size: 1.15em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: hsl(var(--primary-hue), 8%, 35%);
+  border-bottom: 1px solid hsl(var(--primary-hue), 20%, 85%);
+  padding-bottom: 0.5em;
+  margin-top: 2.5em;
+}
+
+:root[class~="dark"] .content h2 {
+  color: hsl(var(--primary-hue), 15%, 70%);
+  border-bottom-color: hsl(var(--primary-hue), 15%, 25%);
+}
+
+/* ── 正文链接 ── */
+.content a:not(.hero-btn):not(.hero-btn-primary):not(.research-card a) {
+  color: hsl(var(--primary-hue), var(--primary-saturation), 40%);
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.content a:not(.hero-btn):not(.hero-btn-primary):not(.research-card a):hover {
+  color: var(--brand-ink-strong);
+}
+
+/* ── 分隔线 ── */
+.content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(var(--primary-hue), var(--primary-saturation), 65%, 0.25) 40%,
+    hsl(var(--primary-hue), var(--primary-saturation), 65%, 0.25) 60%,
+    transparent 100%);
+  margin: var(--space-2xl) 0;
+}
+
+/* ── 代码字体 ── */
+code, pre, kbd {
+  font-family: var(--font-mono);
+}

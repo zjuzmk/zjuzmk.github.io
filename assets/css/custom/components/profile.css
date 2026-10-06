@@ -1,0 +1,189 @@
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT — About 页：个人简介卡 + 编号区块标题
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── About 页标题：与 Publications/Posts 居中对齐 ── */
+.content:has(> .about-profile) > h1:first-child {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0 2.5rem;
+}
+
+.about-profile {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+  margin: 8px 0 var(--space-3xl);
+  padding: 36px;
+  background:
+    linear-gradient(135deg,
+      hsla(var(--primary-hue), 25%, 96%, 0.85) 0%,
+      hsla(var(--primary-hue), 18%, 98%, 0.9) 100%);
+  border-radius: var(--radius-2xl);
+  border: 1px solid hsla(var(--primary-hue), 20%, 85%, 0.6);
+  box-shadow:
+    0 1px 2px hsla(var(--primary-hue), 20%, 20%, 0.04),
+    0 12px 40px hsla(var(--primary-hue), 20%, 25%, 0.08);
+  counter-reset: about-section;
+}
+
+:root[class~="dark"] .about-profile {
+  background:
+    linear-gradient(135deg,
+      hsla(var(--primary-hue), 15%, 12%, 0.85) 0%,
+      hsla(var(--primary-hue), 10%, 10%, 0.9) 100%);
+  border-color: hsla(var(--primary-hue), 15%, 25%, 0.5);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.2),
+    0 12px 40px rgba(0,0,0,0.25);
+}
+
+/* ── 头像 ── */
+.about-photo {
+  flex-shrink: 0;
+  width: 190px;
+  height: 232px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: hsl(var(--primary-hue), 12%, 97%);
+  align-self: center;
+  box-shadow:
+    0 10px 36px rgba(0,0,0,0.12),
+    0 0 0 6px hsla(var(--primary-hue), 40%, 88%, 0.45),
+    0 0 0 12px hsla(var(--primary-hue), 35%, 92%, 0.25);
+}
+
+:root[class~="dark"] .about-photo {
+  background: hsl(var(--primary-hue), 10%, 11%);
+  box-shadow:
+    0 10px 36px rgba(0,0,0,0.32),
+    0 0 0 6px hsla(var(--primary-hue), 30%, 32%, 0.45),
+    0 0 0 12px hsla(var(--primary-hue), 25%, 22%, 0.25);
+}
+
+.about-photo .profile-img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  transform: scale(1.16);
+}
+
+/* ── 简介正文 ── */
+.about-intro {
+  flex: 1;
+  min-width: 0;
+}
+
+.about-intro p {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: 1.02em;
+  line-height: 1.75;
+}
+
+.about-intro p:last-of-type {
+  margin-bottom: var(--space-md);
+}
+
+.about-contact-links {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.about-contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.88em;
+  color: var(--brand-ink);
+  text-decoration: none;
+  padding: 4px 2px;
+  transition: color 0.15s ease;
+}
+
+.about-contact-links a:hover {
+  color: var(--brand-ink-strong);
+}
+
+:root[class~="dark"] .about-contact-links a {
+  color: var(--brand-ink);
+}
+
+:root[class~="dark"] .about-contact-links a:hover {
+  color: var(--brand-ink-strong);
+}
+
+/* ── 编号区块标题（serif、带序号与渐变横线）── */
+.content h2.about-section {
+  counter-increment: about-section;
+  font-family: var(--font-serif);
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: hsl(var(--primary-hue), 25%, 18%);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 3.2em;
+  margin-bottom: 0.4em;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.content h2.about-section::before {
+  content: "0" counter(about-section);
+  font-family: var(--font-mono);
+  font-size: 0.6em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: hsla(var(--primary-hue), var(--primary-saturation), 45%, 0.55);
+  position: relative;
+  top: -0.05em;
+}
+
+.content h2.about-section::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg,
+    hsla(var(--primary-hue), 20%, 80%, 0.5) 0%,
+    transparent 100%);
+  align-self: center;
+}
+
+:root[class~="dark"] .content h2.about-section {
+  color: var(--ink-strong);
+}
+
+:root[class~="dark"] .content h2.about-section::before {
+  color: hsla(var(--primary-hue), 45%, 60%, 0.6);
+}
+
+:root[class~="dark"] .content h2.about-section::after {
+  background: linear-gradient(90deg,
+    hsla(var(--primary-hue), 20%, 30%, 0.6) 0%,
+    transparent 100%);
+}
+
+/* ── 窄屏：简介卡改为纵向堆叠 ── */
+@media (max-width: 640px) {
+  .about-profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+  .about-contact-links {
+    justify-content: center;
+  }
+  .hero-name {
+    font-size: 2.4em;
+  }
+  .hero-fullscreen {
+    min-height: 500px;
+  }
+}

@@ -1,0 +1,67 @@
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT — Publications 列表
+   ══════════════════════════════════════════════════════════════════ */
+
+.content h2 + ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.content h2 + ul li {
+  padding: var(--space-md) 22px;
+  margin-bottom: var(--space-sm);
+  border-radius: var(--radius-md);
+  background: hsl(var(--primary-hue), 10%, 97%);
+  border-left: 3px solid hsla(var(--primary-hue), var(--primary-saturation), 55%, 0.5);
+  transition: background 0.15s ease, border-left-color 0.15s ease, transform 0.15s ease;
+}
+
+.content h2 + ul li:hover {
+  background: hsl(var(--primary-hue), 15%, 93%);
+  border-left-color: hsl(var(--primary-hue), var(--primary-saturation), 48%);
+}
+
+:root[class~="dark"] .content h2 + ul li {
+  background: hsl(var(--primary-hue), 10%, 11%);
+  border-left-color: hsla(var(--primary-hue), 40%, 45%, 0.5);
+}
+
+:root[class~="dark"] .content h2 + ul li:hover {
+  background: hsl(var(--primary-hue), 10%, 15%);
+  border-left-color: hsl(var(--primary-hue), 40%, 48%);
+}
+
+/* ── DOI 链接做成小胶囊按钮 ── */
+.content h2 + ul li a {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 10px;
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--brand-ink);
+  background: hsla(var(--primary-hue), 30%, 70%, 0.18);
+  border: 1px solid hsla(var(--primary-hue), 30%, 60%, 0.3);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  vertical-align: 1px;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.content h2 + ul li a:hover {
+  color: #fff;
+  background: hsla(var(--primary-hue), var(--primary-saturation), 42%, 0.9);
+  border-color: hsla(var(--primary-hue), var(--primary-saturation), 42%, 0.9);
+}
+
+:root[class~="dark"] .content h2 + ul li a {
+  color: hsl(var(--primary-hue), 45%, 70%);
+  background: hsla(var(--primary-hue), 30%, 30%, 0.25);
+  border-color: hsla(var(--primary-hue), 30%, 40%, 0.4);
+}
+
+:root[class~="dark"] .content h2 + ul li a:hover {
+  color: #fff;
+  background: hsla(var(--primary-hue), 45%, 42%, 0.85);
+  border-color: hsla(var(--primary-hue), 45%, 42%, 0.85);
+}

@@ -1,0 +1,23 @@
+/* ══════════════════════════════════════════════════════════════════
+   ③ OVERRIDES — 只放"改动 Hextra 主题"的规则
+   ──────────────────────────────────────────────────────────────────
+   这个文件是唯一允许出现 `hx:` 转义类名和主题内部类名的地方。
+   升级主题时，只需核对此文件里的选择器是否仍然存在。
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 导航栏标题：衬线、减弱字重 ── */
+.hextra-nav-container a span.hx\:font-extrabold {
+  font-weight: 600;
+  font-family: var(--font-serif);
+}
+
+/* ── 导航栏毛玻璃 ── */
+.hextra-nav-container-blur {
+  backdrop-filter: blur(12px);
+}
+
+/* ── 页脚：压缩上下留白 ── */
+footer .hx\:py-12 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 2rem !important;
+}

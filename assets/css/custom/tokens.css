@@ -1,0 +1,118 @@
+/* ══════════════════════════════════════════════════════════════════
+   ① TOKENS — 设计令牌
+   ──────────────────────────────────────────────────────────────────
+   改配色、圆角、间距、宽度，只改这个文件。
+   组件文件里不写裸颜色值，一律引用这里的语义令牌。
+
+   颜色分层：
+     · 与明暗无关的（hue/saturation、字体、圆角、间距、宽度）→ 只定义一次
+     · 随明暗变化的（表面/边框/文字/强调）→ 分别在 :root 与 dark 覆盖
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── 字体 ── */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  --font-serif: cambria, georgia, "Times New Roman", serif;
+  --font-mono: "SF Mono", "Cascadia Code", "Fira Code", "JetBrains Mono", monospace;
+
+  /* ── 品牌色相（同时提供给 Hextra 的设计令牌系统）──
+     deg 单位必须有：Hextra 用空格分隔的 hsl() 计算 --hx-color-primary-*，
+     缺单位会让整串计算失效（搜索框、focus ring 等会失去颜色）。 */
+  --primary-hue: 175deg;
+  --primary-lightness: 50%;
+  --primary-saturation: 45%;
+
+  /* ── 强调色（暖沙色）── */
+  --accent-hue: 32;
+  --accent-saturation: 35%;
+
+  /* ── 布局与尺寸 ──
+     --hextra-* 三个名字是 Hextra 主题模板与本站 layouts 实际引用的契约，
+     不要删（主题用它们算 calc(100vh - var(--hextra-navbar-height)) 等）。
+     新代码优先用不带前缀的 --page-width / --content-width / --navbar-height。 */
+  --hextra-max-page-width: 1440px;
+  --hextra-max-content-width: 800px;
+  --hextra-navbar-height: 54px;
+  --page-width: 1440px;
+  --content-width: 800px;
+  --navbar-height: 54px;
+
+  /* ── 圆角 ── */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-card: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-pill: 999px;
+
+  /* ── 间距 ── */
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
+
+  /* ── 表面（浅色模式）── */
+  --surface: hsl(var(--primary-hue), 12%, 98%);
+  --surface-soft: hsl(var(--primary-hue), 10%, 94%);
+  --surface-line: hsl(var(--primary-hue), 10%, 90%);
+  --border: hsl(var(--primary-hue), 10%, 90%);
+  --border-soft: hsl(var(--primary-hue), 15%, 80%);
+
+  /* ── 文字（浅色模式）── */
+  --ink: hsl(var(--primary-hue), 20%, 18%);
+  --ink-strong: hsl(var(--primary-hue), 25%, 18%);
+  --ink-body: hsl(var(--primary-hue), 5%, 32%);
+  --ink-muted: hsl(var(--primary-hue), 15%, 45%);
+  --ink-subtle: hsl(var(--primary-hue), 12%, 50%);
+
+  /* ── 品牌 / 强调的语义别名 ── */
+  --brand: hsl(var(--primary-hue), var(--primary-saturation), 46%);
+  --brand-ink: hsl(var(--primary-hue), var(--primary-saturation), 38%);
+  --brand-ink-strong: hsl(var(--primary-hue), var(--primary-saturation), 28%);
+  --accent-ink: hsl(var(--accent-hue), var(--accent-saturation), 42%);
+  --accent-surface: hsla(var(--accent-hue), var(--accent-saturation), 60%, 0.14);
+  --accent-border: hsla(var(--accent-hue), var(--accent-saturation), 55%, 0.25);
+
+  /* ── 阴影 ── */
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 28px rgba(0, 0, 0, 0.05);
+  --shadow-float: 0 12px 40px rgba(0, 0, 0, 0.06);
+  --shadow-popup: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+:root[class~="dark"] {
+  /* ── 表面（深色模式）── */
+  --surface: hsl(var(--primary-hue), 10%, 10%);
+  --surface-soft: hsl(var(--primary-hue), 10%, 11%);
+  --surface-line: hsl(var(--primary-hue), 10%, 18%);
+  --border: hsl(var(--primary-hue), 10%, 18%);
+  --border-soft: hsl(var(--primary-hue), 15%, 30%);
+
+  /* ── 文字（深色模式）── */
+  --ink: hsla(0, 0%, 94%, 0.95);
+  --ink-strong: hsla(0, 0%, 92%, 0.95);
+  --ink-body: hsl(var(--primary-hue), 8%, 72%);
+  --ink-muted: hsl(var(--primary-hue), 18%, 62%);
+  --ink-subtle: hsl(var(--primary-hue), 15%, 60%);
+
+  /* ── 品牌 / 强调（深色模式）── */
+  --brand: hsl(var(--primary-hue), 45%, 42%);
+  --brand-ink: hsl(var(--primary-hue), 45%, 68%);
+  --brand-ink-strong: hsl(var(--primary-hue), 50%, 78%);
+  --accent-ink: hsl(var(--accent-hue), var(--accent-saturation), 62%);
+  --accent-surface: hsla(var(--accent-hue), var(--accent-saturation), 45%, 0.18);
+  --accent-border: hsla(var(--accent-hue), var(--accent-saturation), 50%, 0.3);
+
+  /* ── 阴影（深色模式对比更强）── */
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 8px 28px rgba(0, 0, 0, 0.2);
+  --shadow-float: 0 12px 40px rgba(0, 0, 0, 0.25);
+  --shadow-popup: 0 6px 24px rgba(0, 0, 0, 0.35);
+}

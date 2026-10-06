@@ -1,0 +1,440 @@
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT — 卡片族
+   research-card / site-card / post-card
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 田野点卡片（替代原来的 markdown 表格）── */
+.site-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0 8px;
+}
+
+@media (min-width: 640px) {
+  .site-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.site-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.site-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: hsla(var(--primary-hue), 25%, 70%, 0.45);
+}
+
+:root[class~="dark"] .site-card {
+  border-color: var(--border);
+}
+
+:root[class~="dark"] .site-card:hover {
+  border-color: hsla(var(--primary-hue), 20%, 30%, 0.55);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.site-card-num {
+  flex-shrink: 0;
+  width: var(--space-xl);
+  height: var(--space-xl);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  font-weight: 700;
+  color: #fff;
+  background: var(--brand);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  margin-top: 2px;
+}
+
+:root[class~="dark"] .site-card-num {
+  background: hsl(var(--primary-hue), 45%, 42%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.site-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.site-card-title {
+  margin: 0 0 var(--space-xs) 0;
+  font-size: 1.05em;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: hsl(var(--primary-hue), 22%, 18%);
+}
+
+:root[class~="dark"] .site-card-title {
+  color: var(--ink);
+}
+
+.site-card-focus {
+  margin: 0 0 10px 0;
+  font-size: 0.9em;
+  line-height: 1.55;
+  color: hsl(var(--primary-hue), 8%, 38%);
+}
+
+:root[class~="dark"] .site-card-focus {
+  color: hsl(var(--primary-hue), 10%, 72%);
+}
+
+.site-card-period {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-ink);
+  background: hsla(var(--accent-hue), var(--accent-saturation), 55%, 0.12);
+  border: 1px solid hsla(var(--accent-hue), var(--accent-saturation), 50%, 0.2);
+  border-radius: var(--radius-xs);
+  padding: 3px 10px;
+}
+
+:root[class~="dark"] .site-card-period {
+  color: hsl(var(--accent-hue), var(--accent-saturation), 60%);
+  background: hsla(var(--accent-hue), var(--accent-saturation), 45%, 0.16);
+  border-color: hsla(var(--accent-hue), var(--accent-saturation), 50%, 0.28);
+}
+
+/* ── 研究项目卡片 ── */
+.research-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  counter-reset: research-card;
+}
+
+.research-card {
+  padding: var(--space-lg) 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid hsl(var(--primary-hue), var(--primary-saturation), 52%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
+  position: relative;
+  counter-increment: research-card;
+}
+
+.research-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  border-left-color: hsl(var(--primary-hue), 60%, 40%);
+}
+
+:root[class~="dark"] .research-card {
+  border-color: var(--border);
+  border-left-color: hsl(var(--primary-hue), 45%, 44%);
+}
+
+:root[class~="dark"] .research-card:hover {
+  border-left-color: hsl(var(--primary-hue), 55%, 50%);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* 卡片序号 */
+.research-card::before {
+  content: "0" counter(research-card);
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: hsla(var(--primary-hue), var(--primary-saturation), 50%, 0.4);
+  transition: color 0.2s ease;
+}
+
+.research-card:hover::before {
+  color: hsla(var(--primary-hue), var(--primary-saturation), 45%, 0.75);
+}
+
+:root[class~="dark"] .research-card::before {
+  color: hsla(var(--primary-hue), 40%, 55%, 0.35);
+}
+
+:root[class~="dark"] .research-card:hover::before {
+  color: hsla(var(--primary-hue), 50%, 65%, 0.7);
+}
+
+.research-card h3 {
+  margin: 0 0 var(--space-xs) 0;
+  font-size: 1.1em;
+  padding-right: 40px;
+}
+
+.research-card h3 a {
+  color: var(--brand-ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.research-card h3 a::after {
+  content: "→";
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.research-card:hover h3 a::after {
+  opacity: 0.7;
+  transform: translateX(0);
+}
+
+.research-card h3 a:hover {
+  color: var(--brand-ink-strong);
+}
+
+:root[class~="dark"] .research-card h3 a {
+  color: var(--brand-ink);
+}
+
+:root[class~="dark"] .research-card h3 a:hover {
+  color: var(--brand-ink-strong);
+}
+
+.research-card p {
+  margin: 8px 0 0 0;
+  font-size: 0.95em;
+  line-height: 1.65;
+  color: var(--ink-body);
+}
+
+:root[class~="dark"] .research-card p {
+  color: var(--ink-body);
+}
+
+/* 年份徽章（正文里的 <strong>） */
+.research-card strong {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-ink);
+  background: var(--accent-surface);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-xs);
+  padding: 2px 9px;
+  margin: 4px 0 8px;
+}
+
+:root[class~="dark"] .research-card strong {
+  color: hsl(var(--accent-hue), var(--accent-saturation), 62%);
+  background: var(--accent-surface);
+  border-color: var(--accent-border);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   文章卡片（posts 列表）
+   ══════════════════════════════════════════════════════════════════ */
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-float);
+  border-color: hsla(var(--primary-hue), 25%, 70%, 0.4);
+}
+
+:root[class~="dark"] .post-card {
+  border-color: var(--border);
+}
+
+:root[class~="dark"] .post-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  border-color: hsla(var(--primary-hue), 20%, 30%, 0.6);
+}
+
+.post-card-image {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.post-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.post-card:hover .post-card-image img {
+  transform: scale(1.05);
+}
+
+.post-card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 60%,
+    hsla(var(--primary-hue), 15%, 10%, 0.06) 100%);
+  pointer-events: none;
+}
+
+.post-card-content {
+  padding: 22px var(--space-lg) 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.post-card-date {
+  font-size: 0.78em;
+  font-weight: 500;
+  color: var(--ink-subtle);
+  letter-spacing: 0.02em;
+}
+
+:root[class~="dark"] .post-card-date {
+  color: hsl(var(--primary-hue), 15%, 60%);
+}
+
+.post-card-location {
+  font-size: 0.78em;
+  color: var(--ink-muted);
+}
+
+:root[class~="dark"] .post-card-location {
+  color: hsl(var(--primary-hue), 18%, 62%);
+}
+
+.post-card-title {
+  margin: 0 0 10px 0;
+  font-size: 1.15em;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.post-card-title a {
+  color: hsl(var(--primary-hue), 20%, 18%);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.post-card-title a:hover {
+  color: hsl(var(--primary-hue), 50%, 32%);
+}
+
+:root[class~="dark"] .post-card-title a {
+  color: hsla(0, 0%, 95%, 0.95);
+}
+
+:root[class~="dark"] .post-card-title a:hover {
+  color: hsl(var(--primary-hue), 55%, 70%);
+}
+
+.post-card-summary {
+  font-size: 0.9em;
+  line-height: 1.65;
+  color: hsl(var(--primary-hue), 8%, 38%);
+  margin: 0 0 var(--space-md) 0;
+  flex: 1;
+}
+
+:root[class~="dark"] .post-card-summary {
+  color: hsl(var(--primary-hue), 10%, 72%);
+}
+
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: auto;
+}
+
+.post-card-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.post-card-tag {
+  font-size: 0.72em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 20%, 42%);
+  letter-spacing: 0.01em;
+}
+
+:root[class~="dark"] .post-card-tag {
+  color: hsl(var(--primary-hue), 25%, 65%);
+}
+
+.post-card-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 45%, 42%);
+  text-decoration: none;
+  transition: color 0.15s ease, gap 0.15s ease;
+  white-space: nowrap;
+}
+
+.post-card-readmore:hover {
+  color: hsl(var(--primary-hue), 55%, 32%);
+  gap: 8px;
+}
+
+:root[class~="dark"] .post-card-readmore {
+  color: hsl(var(--primary-hue), 50%, 68%);
+}
+
+:root[class~="dark"] .post-card-readmore:hover {
+  color: hsl(var(--primary-hue), 55%, 78%);
+}

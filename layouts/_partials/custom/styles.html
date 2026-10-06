@@ -1,0 +1,31 @@
+{{- /* Custom stylesheet layer, assembled explicitly because resources.Concat
+       does not resolve @import. Order below is the cascade order. */ -}}
+{{- $customCssPaths := slice
+  "css/custom/tokens.css"
+  "css/custom/base.css"
+  "css/custom/components/hero.css"
+  "css/custom/components/profile.css"
+  "css/custom/components/cards.css"
+  "css/custom/components/map.css"
+  "css/custom/components/content.css"
+  "css/custom/components/posts.css"
+  "css/custom/components/publications.css"
+  "css/custom/overrides.css"
+-}}
+{{- $customCssSlice := slice -}}
+{{- range $customCssPaths -}}
+  {{- $res := resources.Get . -}}
+  {{- if $res -}}
+    {{- $customCssSlice = $customCssSlice | append $res -}}
+  {{- else -}}
+    {{- errorf "custom stylesheet not found: %s" . -}}
+  {{- end -}}
+{{- end -}}
+{{- if ne (len $customCssSlice) (len $customCssPaths) -}}
+  {{- errorf "custom stylesheet layer incomplete: got %d of %d files" (len $customCssSlice) (len $customCssPaths) -}}
+{{- end -}}
+{{- $customCss := $customCssSlice | resources.Concat "css/custom-bundle.css" -}}
+{{- if hugo.IsProduction -}}
+  {{- $customCss = $customCss | minify | fingerprint -}}
+{{- end -}}
+{{- return $customCss -}}

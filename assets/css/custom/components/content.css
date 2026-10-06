@@ -1,0 +1,45 @@
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT — 正文元素：表格
+   （链接、分隔线、代码字体已在 base.css）
+   ══════════════════════════════════════════════════════════════════ */
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  margin-top: var(--space-sm);
+}
+
+.content th {
+  text-align: left;
+  padding: 10px var(--space-md);
+  background: hsl(var(--primary-hue), 18%, 94%);
+  font-weight: 600;
+  color: hsl(var(--primary-hue), 12%, 25%);
+  border-bottom: 2px solid hsl(var(--primary-hue), 25%, 82%);
+  font-size: 0.82em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+:root[class~="dark"] .content th {
+  background: hsl(var(--primary-hue), 15%, 14%);
+  color: hsl(var(--primary-hue), 15%, 75%);
+  border-bottom-color: hsl(var(--primary-hue), 20%, 28%);
+}
+
+.content td {
+  padding: 10px var(--space-md);
+  border-bottom: 1px solid hsl(var(--primary-hue), 10%, 90%);
+}
+
+:root[class~="dark"] .content td {
+  border-bottom-color: hsl(var(--primary-hue), 10%, 20%);
+}
+
+.content tr:last-child td {
+  border-bottom: none;
+}

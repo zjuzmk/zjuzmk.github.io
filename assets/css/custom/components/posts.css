@@ -1,0 +1,246 @@
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT — Posts：列表页 Hero + 文章阅读页
+   （卡片本身在 cards.css）
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 列表页 Hero ── */
+.posts-hero {
+  position: relative;
+  margin: 20px 0 var(--space-3xl);
+  padding: var(--space-3xl) var(--space-2xl) 44px;
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(135deg,
+    hsla(var(--primary-hue), 40%, 85%, 0.3) 0%,
+    hsla(var(--accent-hue), 35%, 88%, 0.2) 50%,
+    hsla(280, 20%, 88%, 0.15) 100%);
+}
+
+:root[class~="dark"] .posts-hero {
+  background: linear-gradient(135deg,
+    hsla(var(--primary-hue), 30%, 20%, 0.35) 0%,
+    hsla(var(--accent-hue), 25%, 18%, 0.2) 50%,
+    hsla(280, 15%, 18%, 0.15) 100%);
+}
+
+.posts-hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.6em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 10px 0;
+  color: hsl(var(--primary-hue), 25%, 18%);
+  line-height: 1.1;
+}
+
+:root[class~="dark"] .posts-hero-title {
+  color: hsla(0, 0%, 95%, 0.95);
+}
+
+.posts-hero-subtitle {
+  font-size: 1em;
+  line-height: 1.7;
+  color: hsl(var(--primary-hue), 12%, 35%);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+:root[class~="dark"] .posts-hero-subtitle {
+  color: hsla(0, 0%, 88%, 0.7);
+}
+
+/* ── 分页器 ── */
+.posts-grid + .hx\:mt-10,
+.posts-grid + nav {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid hsla(var(--primary-hue), 15%, 75%, 0.25);
+}
+
+:root[class~="dark"] .posts-grid + .hx\:mt-10,
+:root[class~="dark"] .posts-grid + nav {
+  border-top-color: hsla(var(--primary-hue), 15%, 25%, 0.25);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   文章阅读页
+   ══════════════════════════════════════════════════════════════════ */
+
+.post-header {
+  margin: 8px 0 var(--space-2xl);
+}
+
+.post-header-title {
+  font-family: var(--font-serif);
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-md) 0;
+  color: hsl(var(--primary-hue), 20%, 18%);
+  line-height: 1.2;
+}
+
+:root[class~="dark"] .post-header-title {
+  color: hsla(0, 0%, 95%, 0.95);
+}
+
+.post-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+
+.post-header-date {
+  font-size: 0.83em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 12%, 48%);
+  letter-spacing: 0.02em;
+}
+
+:root[class~="dark"] .post-header-date {
+  color: hsl(var(--primary-hue), 15%, 62%);
+}
+
+.post-header-location {
+  font-size: 0.83em;
+  color: var(--ink-muted);
+}
+
+:root[class~="dark"] .post-header-location {
+  color: hsl(var(--primary-hue), 18%, 62%);
+}
+
+.post-header-tags {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.post-header-tag {
+  display: inline-block;
+  padding: 3px var(--space-sm);
+  font-size: 0.73em;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-pill);
+  background: hsla(var(--primary-hue), 25%, 75%, 0.15);
+  color: hsl(var(--primary-hue), 25%, 38%);
+  border: 1px solid hsla(var(--primary-hue), 25%, 65%, 0.2);
+}
+
+:root[class~="dark"] .post-header-tag {
+  background: hsla(var(--primary-hue), 25%, 35%, 0.2);
+  color: hsl(var(--primary-hue), 30%, 70%);
+  border-color: hsla(var(--primary-hue), 25%, 45%, 0.25);
+}
+
+.post-header-image {
+  margin: 0 -24px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-height: 380px;
+}
+
+.post-header-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .post-header-image {
+    margin: 0;
+    border-radius: var(--radius-xl);
+  }
+}
+
+.post-article-content {
+  margin-top: var(--space-xl);
+}
+
+/* ── 引用块 ── */
+.post-article-content .content blockquote {
+  position: relative;
+  margin: 28px 0;
+  padding: 20px 28px;
+  border-left: 3px solid hsl(var(--primary-hue), 45%, 50%);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  background: hsla(var(--primary-hue), 25%, 95%, 0.5);
+  font-size: 1.05em;
+  font-style: italic;
+  color: hsl(var(--primary-hue), 12%, 28%);
+}
+
+:root[class~="dark"] .post-article-content .content blockquote {
+  background: hsla(var(--primary-hue), 15%, 15%, 0.4);
+  color: hsla(0, 0%, 85%, 0.85);
+  border-left-color: hsl(var(--primary-hue), 45%, 45%);
+}
+
+/* ── 链式分隔线（品牌色→强调色）── */
+.post-article-content .content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(var(--primary-hue), 30%, 65%, 0.4) 30%,
+    hsl(var(--accent-hue), 40%, 65%, 0.3) 70%,
+    transparent 100%);
+  margin: var(--space-2xl) 0;
+}
+
+/* ── 文章内区块标题：不用大写字距 ── */
+.post-article-content .content h2 {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: hsl(var(--primary-hue), 18%, 22%);
+  margin-top: 2.2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid hsla(var(--primary-hue), 20%, 80%, 0.4);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+:root[class~="dark"] .post-article-content .content h2 {
+  color: hsla(0, 0%, 90%, 0.9);
+  border-bottom-color: hsla(var(--primary-hue), 15%, 25%, 0.4);
+}
+
+/* ── 返回链接 ── */
+.post-back-link {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid hsla(var(--primary-hue), 15%, 80%, 0.3);
+}
+
+:root[class~="dark"] .post-back-link {
+  border-top-color: hsla(var(--primary-hue), 15%, 25%, 0.3);
+}
+
+.post-back-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.9em;
+  font-weight: 500;
+  color: hsl(var(--primary-hue), 35%, 42%);
+  text-decoration: none;
+  transition: color 0.15s ease, gap 0.15s ease;
+}
+
+.post-back-link a:hover {
+  color: hsl(var(--primary-hue), 50%, 30%);
+  gap: 10px;
+}
+
+:root[class~="dark"] .post-back-link a {
+  color: hsl(var(--primary-hue), 40%, 65%);
+}
+
+:root[class~="dark"] .post-back-link a:hover {
+  color: hsl(var(--primary-hue), 50%, 75%);
+}
