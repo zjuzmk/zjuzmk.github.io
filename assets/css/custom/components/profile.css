@@ -30,6 +30,12 @@
     0 12px 40px rgba(0,0,0,0.25);
 }
 
+/* 顶部留深一点：头像外的两圈光环会向上溢出，padding 太小时锚点跳转
+   （或任何贴边显示）会把光环和发顶切在卡片边缘上 */
+.home-about .about-profile {
+  padding-top: 48px;
+}
+
 /* ── 头像 ── */
 .about-photo {
   flex-shrink: 0;

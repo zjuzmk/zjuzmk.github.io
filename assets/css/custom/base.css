@@ -8,27 +8,24 @@ html {
   font-family: var(--font-sans);
 }
 
+/* ── 页面底色 ──
+   主题给 body 写了背景，但它的具体值由 --hx-color-white 决定，
+   所以这里只改这个主题令牌，不靠 !important 去压它的规则。 */
+:root, :root[class~="dark"] {
+  --hx-color-white: var(--page-bg);
+  --hx-color-dark: var(--page-bg);
+}
+
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -20%,
-      hsla(var(--primary-hue), 40%, 88%, 0.25) 0%,
-      transparent 60%),
-    radial-gradient(ellipse 60% 50% at 85% 100%,
-      hsla(var(--primary-hue), 30%, 85%, 0.18) 0%,
-      transparent 60%);
+  background-image:
+    radial-gradient(ellipse 70% 45% at 50% 0%, var(--page-glow) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 40% at 88% 96%, var(--page-glow) 0%, transparent 70%);
   background-attachment: fixed;
-}
-
-:root[class~="dark"] body {
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -20%,
-      hsla(var(--primary-hue), 30%, 20%, 0.2) 0%,
-      transparent 60%);
-  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 /* ── 界面元素统一用无衬线 ── */

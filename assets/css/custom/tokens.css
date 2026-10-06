@@ -63,6 +63,12 @@
   --space-2xl: 40px;
   --space-3xl: 48px;
 
+  /* ── 页面底色 ──
+     取自首页 hero 那张雪山图的主色：淡黄绿（sage）。
+     全站统一用它，深色模式再压暗，避免内容区接在整屏图后面出现一道白墙。 */
+  --page-bg: hsl(95, 26%, 96%);
+  --page-glow: hsla(95, 30%, 86%, 0.55);
+
   /* ── 表面（浅色模式）── */
   --surface: hsl(var(--primary-hue), 12%, 98%);
   --surface-soft: hsl(var(--primary-hue), 10%, 94%);
@@ -93,6 +99,10 @@
 }
 
 :root[class~="dark"] {
+  /* ── 页面底色（深色模式：同色相压暗，比原来的近黑更沉）── */
+  --page-bg: hsl(95, 10%, 6%);
+  --page-glow: hsla(95, 18%, 22%, 0.5);
+
   /* ── 表面（深色模式）── */
   --surface: hsl(var(--primary-hue), 10%, 10%);
   --surface-soft: hsl(var(--primary-hue), 10%, 11%);

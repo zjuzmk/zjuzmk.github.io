@@ -54,6 +54,8 @@ description: "张梦珂，EPFL 城市与建筑科学博士，研究城市政治�
 
 <div class="content home-about">
 
+<div id="about" class="about-anchor"></div>
+
 <div class="about-profile">
 
 <div class="about-photo">
@@ -62,7 +64,7 @@ description: "张梦珂，EPFL 城市与建筑科学博士，研究城市政治�
 
 <div class="about-intro">
 
-## 关于我 {#about .about-section}
+## 关于我 {.about-section}
 
 我是一名城乡规划、城市研究与人文地理交叉领域的研究者，关注**区域发展的政治经济学、边缘城市化与基础设施驱动的空间转型**等议题。
 

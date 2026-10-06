@@ -54,6 +54,8 @@ I study the political economy of regional development, periphery urbanization, a
 
 <div class="content home-about">
 
+<div id="about" class="about-anchor"></div>
+
 <div class="about-profile">
 
 <div class="about-photo">
@@ -62,7 +64,7 @@ I study the political economy of regional development, periphery urbanization, a
 
 <div class="about-intro">
 
-## About {#about .about-section}
+## About {.about-section}
 
 I am a researcher at the intersection of **urban planning, urban studies, and human geography**. My work examines the political economy of regional development, periphery urbanization, infrastructure-led spatial transformation, and the politics of space under state-led development.
 

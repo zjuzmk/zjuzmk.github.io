@@ -25,7 +25,7 @@
   width: 100%;
   max-width: var(--home-width);
   margin-inline: auto;
-  padding-top: var(--space-3xl);
+  padding-top: var(--space-xl);
 }
 
 /* ── 导航栏：首页首屏透明覆盖在 hero 上，滚动后恢复毛玻璃底色 ── */
@@ -74,12 +74,12 @@
 }
 
 .hextra-nav-overlay.hextra-nav-scrolled .hextra-nav-container-blur {
-  background: hsl(var(--primary-hue), 20%, 99%);
+  background: var(--page-bg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.06);
 }
 
 :root[class~="dark"] .hextra-nav-overlay.hextra-nav-scrolled .hextra-nav-container-blur {
-  background: hsl(var(--primary-hue), 12%, 8%);
+  background: var(--page-bg);
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
 }
 

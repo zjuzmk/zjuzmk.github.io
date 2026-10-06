@@ -40,7 +40,14 @@
     transparent 100%);
 }
 
-/* ── 锚点定位：Hextra 的渲染钩子把 id 放在标题内的 span 上 ── */
-.content h2.about-section > span[id]:target {
-  scroll-margin-top: var(--navbar-height);
+/* ── 锚点定位 ──
+   #about 是一个零高度的在文档流锚点（见 content/_index.md）。
+   不要把它做成绝对定位：绝对定位元素被排除在滚动容器的滚动区域外，
+   浏览器会忽略它的 scroll-margin，落点会顶到导航栏底下。
+   96px ≈ 卡片内边距 + 头像光环，保证跳转后整张卡和头像完整露出。 ── */
+.home-about > .about-anchor {
+  display: block;
+  height: 0;
+  margin-top: calc(-1 * var(--space-lg));
+  scroll-margin-top: calc(var(--navbar-height) + var(--space-2xl));
 }
